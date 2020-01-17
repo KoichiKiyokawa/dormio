@@ -32,7 +32,13 @@ export default () => {
           <ListItem itemHeader>
             <Text>メッセージのやりとりをする</Text>
           </ListItem>
-          <ListItem button icon>
+          <ListItem
+            button
+            icon
+            onPress={() => {
+              console.log('manager')
+            }}
+          >
             <Left>
               <FontAwesome5 name="user-shield" size={24} />
             </Left>
@@ -46,7 +52,13 @@ export default () => {
               <Icon name="arrow-forward" />
             </Right>
           </ListItem>
-          <ListItem button icon>
+          <ListItem
+            button
+            icon
+            onPress={() => {
+              console.log('residents')
+            }}
+          >
             <Left>
               <FontAwesome5 name="users" size={24} />
             </Left>
