@@ -31,6 +31,7 @@ export default () => {
           <CardItem header>
             <FontAwesome5
               name="bullhorn"
+              color="teal"
               size={24}
               style={{ marginRight: 10 }}
             />
