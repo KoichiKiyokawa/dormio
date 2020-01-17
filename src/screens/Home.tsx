@@ -1,6 +1,8 @@
 import React from 'react'
+import { View } from 'react-native'
 import {
   Body,
+  Button,
   Card,
   CardItem,
   Container,
@@ -16,6 +18,7 @@ import { RootContext } from '../contexts/RootContext'
 import { parseToMonthWithDay } from '../utils/dateUtil'
 
 export default () => {
+  const [inManagerRoom, setIsManagerRoom] = React.useState(true)
   const { notices, setNotices } = React.useContext(RootContext)
 
   React.useEffect(() => {
@@ -28,6 +31,42 @@ export default () => {
   return (
     <Container>
       <Content>
+        {/* 管理人の情報 */}
+        <Card>
+          <CardItem header>
+            <FontAwesome5
+              name="user-shield"
+              size={24}
+              style={{ marginRight: 10 }}
+            />
+            <Text>管理人さん情報</Text>
+          </CardItem>
+          <CardItem>
+            <Body>
+              <Text>管理人は現在...</Text>
+              <Body style={{ justifyContent: 'center', flexDirection: 'row' }}>
+                <Button
+                  rounded
+                  light={!inManagerRoom}
+                  info={inManagerRoom}
+                  onPress={() => setIsManagerRoom(!inManagerRoom)}
+                >
+                  <Text style={{ color: 'white' }}>管理室にいます</Text>
+                </Button>
+                <Button
+                  rounded
+                  light={inManagerRoom}
+                  danger={!inManagerRoom}
+                  style={{ marginLeft: 10 }}
+                  onPress={() => setIsManagerRoom(!inManagerRoom)}
+                >
+                  <Text style={{ color: 'white' }}>出かけています</Text>
+                </Button>
+              </Body>
+            </Body>
+          </CardItem>
+        </Card>
+
         {/* お知らせ */}
         <Card>
           <CardItem header>
