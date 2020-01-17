@@ -15,7 +15,7 @@ import { FontAwesome5 } from '@expo/vector-icons'
 
 import Nav from '../components/Nav'
 
-export default ({navigation}) => {
+export default ({ navigation }) => {
   const unreadCount = {
     manager: 2,
     residents: 23
