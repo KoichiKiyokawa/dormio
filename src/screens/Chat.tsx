@@ -1,15 +1,66 @@
 import React from 'react'
-import { Container, Content, Text } from 'native-base'
+import {
+  Badge,
+  Body,
+  Container,
+  Content,
+  Icon,
+  Left,
+  List,
+  ListItem,
+  Text,
+  Right
+} from 'native-base'
+import { FontAwesome5 } from '@expo/vector-icons'
 
-import Nav from "../components/Nav"
+import Nav from '../components/Nav'
 
 export default () => {
+  const unreadCount = {
+    manager: 2,
+    residents: 23
+  }
+
+  const onPushManager = () => {}
+
   return (
     <Container>
       <Nav />
 
       <Content>
-        <Text>chat page</Text>
+        <List>
+          <ListItem itemHeader>
+            <Text>メッセージのやりとりをする</Text>
+          </ListItem>
+          <ListItem button icon>
+            <Left>
+              <FontAwesome5 name="user-shield" size={24} />
+            </Left>
+            <Body>
+              <Text>管理人</Text>
+            </Body>
+            <Right>
+              <Badge>
+                <Text>{unreadCount.manager}</Text>
+              </Badge>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+          <ListItem button icon>
+            <Left>
+              <FontAwesome5 name="users" size={24} />
+            </Left>
+            <Body>
+              <Text>住人みんな</Text>
+            </Body>
+            <Right>
+              <Badge>
+                <Text>{unreadCount.residents}</Text>
+              </Badge>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+        </List>
       </Content>
     </Container>
   )
