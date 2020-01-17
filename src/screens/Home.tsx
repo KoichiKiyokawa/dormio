@@ -1,10 +1,12 @@
 import React from 'react'
 import {
+  Body,
   Card,
   CardItem,
   Container,
   Content,
   Icon,
+  Left,
   Text,
   Right
 } from 'native-base'
@@ -39,10 +41,12 @@ export default () => {
           </CardItem>
           {notices.map((notice, i) => (
             <CardItem key={i}>
-              <Text style={{ marginRight: 10, color: 'silver' }}>
-                {parseToMonthWithDay(notice.date)}
-              </Text>
-              <Text>{notice.text}</Text>
+              <Left>
+                <Text style={{ marginRight: 10, color: 'silver' }}>
+                  {parseToMonthWithDay(notice.date)}
+                </Text>
+                <Text>{notice.text}</Text>
+              </Left>
               <Right>
                 <Icon name="arrow-forward" />
               </Right>
