@@ -1,4 +1,9 @@
 import React from 'react'
 import AppContainer from './src/containers/AppContainer'
+import { RootProvider } from './src/contexts/RootContext'
 
-export default () => <AppContainer />
+export default () => (
+  <RootProvider>
+    <AppContainer />
+  </RootProvider>
+)
