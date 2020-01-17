@@ -6,8 +6,6 @@ import Nav from '../components/Nav'
 export default () => {
   return (
     <Container>
-      <Nav />
-
       <Content>
         <Text>meal page</Text>
       </Content>

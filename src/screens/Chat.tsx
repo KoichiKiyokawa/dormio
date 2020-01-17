@@ -15,7 +15,7 @@ import { FontAwesome5 } from '@expo/vector-icons'
 
 import Nav from '../components/Nav'
 
-export default () => {
+export default ({navigation}) => {
   const unreadCount = {
     manager: 2,
     residents: 23
@@ -25,8 +25,6 @@ export default () => {
 
   return (
     <Container>
-      <Nav />
-
       <Content>
         <List>
           <ListItem itemHeader>
@@ -36,7 +34,7 @@ export default () => {
             button
             icon
             onPress={() => {
-              console.log('manager')
+              navigation.navigate('ManagerChat')
             }}
           >
             <Left>
@@ -56,7 +54,7 @@ export default () => {
             button
             icon
             onPress={() => {
-              console.log('residents')
+              navigation.navigate('ResidentsChat')
             }}
           >
             <Left>

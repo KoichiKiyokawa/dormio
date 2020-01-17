@@ -4,13 +4,16 @@ import * as Font from 'expo-font'
 import { Container } from 'native-base'
 import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
+import { createStackNavigator } from 'react-navigation-stack';
 import { FontAwesome5 } from '@expo/vector-icons'
 
 import Home from '../screens/Home'
 import Meal from '../screens/Meal'
 import Chat from '../screens/Chat'
+import Manager from "../screens/chat/Manager"
+import Residents from "../screens/chat/Residents"
 
-const AppNavigator = createBottomTabNavigator({
+const MainNavigator = createBottomTabNavigator({
   Home: {
     screen: Home,
     navigationOptions: () => ({
@@ -35,6 +38,12 @@ const AppNavigator = createBottomTabNavigator({
       )
     })
   }
+})
+
+const AppNavigator = createStackNavigator({
+  Main: MainNavigator,
+  ManagerChat: Manager,
+  ResidentsChat: Residents
 })
 
 const AppContainer = createAppContainer(AppNavigator)
