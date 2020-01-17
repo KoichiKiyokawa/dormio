@@ -5,7 +5,7 @@ export default () => {
   return (
     <Container>
       <Content>
-        <Text>home page</Text>
+        <Text>chat page</Text>
       </Content>
     </Container>
   )
