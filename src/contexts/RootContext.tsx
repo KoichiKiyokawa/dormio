@@ -3,12 +3,10 @@ import { IMessage } from 'react-native-gifted-chat'
 
 import { db } from '../plugins/firebase'
 
-interface INotice {
-  text: string
-  date: Date
-}
+interface IContext {
+  user: IUser
+  setUser: (arg: IUser) => void
 
-interface InitialState {
   messages: IMessage[]
   setMessages: (arg: IMessage[]) => void
 
@@ -16,9 +14,16 @@ interface InitialState {
   setNotices: (arg: INotice[]) => void
 }
 
-export const RootContext = React.createContext<Partial<InitialState>>(null)
+export const RootContext = React.createContext<Partial<IContext>>(null)
 
 export const RootProvider: React.FC = ({ children }) => {
+  const [user, setUser] = React.useState<IUser>({
+    roomNumber: 0,
+    name: '管理人',
+    id: 0,
+    isManager: true
+  })
+
   // チャットのメッセージ
   const [messages, setMessages] = React.useState<IMessage[]>([])
 
@@ -44,7 +49,7 @@ export const RootProvider: React.FC = ({ children }) => {
 
   return (
     <RootContext.Provider
-      value={{ messages, setMessages, notices, setNotices }}
+      value={{ user, setUser, messages, setMessages, notices, setNotices }}
     >
       {children}
     </RootContext.Provider>
