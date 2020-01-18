@@ -30,7 +30,10 @@ export const RootProvider: React.FC = ({ children }) => {
       setMessages(
         querySnapshot.docs.map(doc => {
           const messageData = doc.data()
-          return { ...messageData, createdAt: messageData.createdAt.toDate() } as IMessage
+          return {
+            ...messageData,
+            createdAt: messageData.createdAt.toDate()
+          } as IMessage
         })
       )
     })
