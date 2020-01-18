@@ -7,11 +7,13 @@ import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createStackNavigator } from 'react-navigation-stack'
 import { FontAwesome5 } from '@expo/vector-icons'
 
+import Nav from '../components/Nav'
 import Home from '../screens/Home'
 import Meal from '../screens/Meal'
 import Chat from '../screens/Chat'
 import Manager from '../screens/chat/Manager'
 import Residents from '../screens/chat/Residents'
+import Setting from '../screens/Setting'
 
 const MainNavigator = createBottomTabNavigator({
   Home: {
@@ -45,11 +47,39 @@ const AppNavigator = createStackNavigator({
     screen: MainNavigator,
     navigationOptions: ({ navigation }) => {
       const labelEnum = ['ホーム', '食事', 'チャット']
-      return { headerTitle: labelEnum[navigation.state.index] }
+      return {
+        header: () => (
+          <Nav
+            title={labelEnum[navigation.state.index]}
+            showSettingButton
+            navigation={navigation}
+          />
+        )
+      }
     }
   },
-  ManagerChat: Manager,
-  ResidentsChat: Residents
+  ManagerChat: {
+    screen: Manager,
+    navigationOptions: ({ navigation }) => ({
+      header: () => (
+        <Nav title="管理人" showBackButton navigation={navigation} />
+      )
+    })
+  },
+  ResidentsChat: {
+    screen: Residents,
+    navigationOptions: ({ navigation }) => ({
+      header: () => (
+        <Nav title="住人みんな" showBackButton navigation={navigation} />
+      )
+    })
+  },
+  Setting: {
+    screen: Setting,
+    navigationOptions: ({ navigation }) => ({
+      header: () => <Nav title="設定" showBackButton navigation={navigation} />
+    })
+  }
 })
 
 const AppContainer = createAppContainer(AppNavigator)

@@ -1,10 +1,51 @@
 import React from 'react'
-import { Header, Body, Title } from 'native-base'
+import {
+  Left,
+  Header,
+  Body,
+  Button,
+  Icon,
+  Right,
+  Text,
+  Title
+} from 'native-base'
 
-export default () => (
+const Nav = ({
+  title,
+  showBackButton = false,
+  showSettingButton = false,
+  navigation
+}) => (
   <Header>
+    <Left>
+      {showBackButton && (
+        <Button
+          transparent
+          onPress={() => {
+            navigation.goBack(null)
+          }}
+        >
+          <Icon name="arrow-back" />
+          <Text>戻る</Text>
+        </Button>
+      )}
+    </Left>
     <Body>
-      <Title>Domitory</Title>
+      <Title>{title}</Title>
     </Body>
+    <Right>
+      {showSettingButton && (
+        <Button
+          transparent
+          onPress={() => {
+            navigation.navigate('Setting')
+          }}
+        >
+          <Icon name="cog" />
+        </Button>
+      )}
+    </Right>
   </Header>
 )
+
+export default Nav
