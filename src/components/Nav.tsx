@@ -12,13 +12,13 @@ import {
 import { NavigationScreenProp } from 'react-navigation'
 
 type Props = {
-  title:string
-  showBackButton:boolean
-  showSettingButton:boolean
-  navigation:NavigationScreenProp<null>
+  title: string
+  showBackButton: boolean
+  showSettingButton: boolean
+  navigation: NavigationScreenProp<null>
 }
 
-const Nav:React.FC<Props> = ({
+const Nav: React.FC<Props> = ({
   title,
   showBackButton = false,
   showSettingButton = false,

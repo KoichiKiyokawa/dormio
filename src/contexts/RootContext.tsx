@@ -31,7 +31,7 @@ export const RootProvider: React.FC = ({ children }) => {
   const [notices, setNotices] = React.useState<INotice[]>([])
 
   React.useEffect(() => {
-    const unsubscribe = db.collection('messages').onSnapshot(querySnapshot => {
+    const unsubscribe = db.collection('messages').orderBy('createdAt', 'desc').onSnapshot(querySnapshot => {
       setMessages(
         querySnapshot.docs.map(doc => {
           const messageData = doc.data()

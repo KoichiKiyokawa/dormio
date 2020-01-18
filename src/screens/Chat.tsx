@@ -12,11 +12,13 @@ import {
   Right
 } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
-import {NavigationScreenProp}from "react-navigation"
+import { NavigationScreenProp } from 'react-navigation'
 
 import Nav from '../components/Nav'
 
-const Chat:React.FC<{navigation:NavigationScreenProp<null>}> = ({ navigation }) => {
+const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({
+  navigation
+}) => {
   const unreadCount = {
     manager: 2,
     residents: 23
