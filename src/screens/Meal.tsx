@@ -77,7 +77,7 @@ export default () => {
                   <Icon
                     type="MaterialIcons"
                     name="wb-sunny"
-                    size={24}
+                    style={{ color: 'orange' }}
                   />
                   <Badge style={{ backgroundColor: 'white' }}>
                     <Text style={{ color: 'black' }}>朝食</Text>
@@ -89,7 +89,7 @@ export default () => {
                   <Icon
                     type="FontAwesome5"
                     name="moon"
-                    size={24}
+                    style={{ color: 'gold' }}
                   />
                   <Badge style={{ backgroundColor: 'white' }}>
                     <Text style={{ color: 'black' }}>夕食</Text>
