@@ -41,7 +41,13 @@ const MainNavigator = createBottomTabNavigator({
 })
 
 const AppNavigator = createStackNavigator({
-  Main: MainNavigator,
+  Main: {
+    screen: MainNavigator,
+    navigationOptions: ({ navigation }) => {
+      const labelEnum = ['ホーム', '食事', 'チャット']
+      return { headerTitle: labelEnum[navigation.state.index] }
+    }
+  },
   ManagerChat: Manager,
   ResidentsChat: Residents
 })

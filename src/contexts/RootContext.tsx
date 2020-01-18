@@ -32,6 +32,7 @@ export const RootProvider: React.FC = ({ children }) => {
           const messageData = doc.data()
           return {
             ...messageData,
+            _id: doc.id,
             createdAt: messageData.createdAt.toDate()
           } as IMessage
         })
@@ -39,7 +40,7 @@ export const RootProvider: React.FC = ({ children }) => {
     })
 
     return () => unsubscribe()
-  })
+  }, [])
 
   return (
     <RootContext.Provider
