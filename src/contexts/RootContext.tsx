@@ -1,6 +1,8 @@
 import React from 'react'
 import { IMessage } from 'react-native-gifted-chat'
 
+import { db } from '../plugins/firebase'
+
 interface INotice {
   text: string
   date: Date
@@ -22,6 +24,19 @@ export const RootProvider: React.FC = ({ children }) => {
 
   // お知らせ
   const [notices, setNotices] = React.useState<INotice[]>([])
+
+  React.useEffect(() => {
+    const unsubscribe = db.collection('messages').onSnapshot(querySnapshot => {
+      setMessages(
+        querySnapshot.docs.map(doc => {
+          const messageData = doc.data()
+          return { ...messageData, createdAt: messageData.createdAt.toDate() } as IMessage
+        })
+      )
+    })
+
+    return () => unsubscribe()
+  })
 
   return (
     <RootContext.Provider
