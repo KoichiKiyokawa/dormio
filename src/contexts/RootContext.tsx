@@ -31,18 +31,21 @@ export const RootProvider: React.FC = ({ children }) => {
   const [notices, setNotices] = React.useState<INotice[]>([])
 
   React.useEffect(() => {
-    const unsubscribe = db.collection('messages').orderBy('createdAt', 'desc').onSnapshot(querySnapshot => {
-      setMessages(
-        querySnapshot.docs.map(doc => {
-          const messageData = doc.data()
-          return {
-            ...messageData,
-            _id: doc.id,
-            createdAt: messageData.createdAt.toDate()
-          } as IMessage
-        })
-      )
-    })
+    const unsubscribe = db
+      .collection('messages')
+      .orderBy('createdAt', 'desc')
+      .onSnapshot(querySnapshot => {
+        setMessages(
+          querySnapshot.docs.map(doc => {
+            const messageData = doc.data()
+            return {
+              ...messageData,
+              _id: doc.id,
+              createdAt: messageData.createdAt.toDate()
+            } as IMessage
+          })
+        )
+      })
 
     return () => unsubscribe()
   }, [])

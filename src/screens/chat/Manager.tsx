@@ -2,18 +2,18 @@ import React from 'react'
 import { GiftedChat, IMessage } from 'react-native-gifted-chat'
 
 import { RootContext } from '../../contexts/RootContext'
-import {db}from "../../plugins/firebase"
+import { db } from '../../plugins/firebase'
 
 export default () => {
-  const { user,messages, setMessages } = React.useContext(RootContext)
+  const { user, messages, setMessages } = React.useContext(RootContext)
 
   const currentUser = {
-    _id:  user.id,
-    name: user.name 
+    _id: user.id,
+    name: user.name
   }
 
   const onSend = msgs => {
-    msgs.forEach(msg=>{
+    msgs.forEach(msg => {
       db.collection('messages').add({
         text: msg.text,
         createdAt: new Date(),
