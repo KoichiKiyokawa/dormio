@@ -12,6 +12,9 @@ interface IContext {
 
   notices: INotice[]
   setNotices: (arg: INotice[]) => void
+
+  mealOrder: IMealOrder
+  setMealOrder: (arg: IMealOrder) => void
 }
 
 export const RootContext = React.createContext<Partial<IContext>>(null)
@@ -30,6 +33,17 @@ export const RootProvider: React.FC = ({ children }) => {
   // お知らせ
   const [notices, setNotices] = React.useState<INotice[]>([])
 
+  // 食事の申込み
+  const [mealOrder, setMealOrder] = React.useState<IMealOrder>({
+    monday: { breakfast: true, dinner: true },
+    tuesday: { breakfast: true, dinner: true },
+    wednesday: { breakfast: true, dinner: true },
+    thursday: { breakfast: true, dinner: true },
+    friday: { breakfast: true, dinner: true },
+    saturday: { breakfast: true, dinner: true }
+  })
+
+  // メッセージの取得
   React.useEffect(() => {
     const unsubscribe = db
       .collection('messages')
@@ -52,7 +66,7 @@ export const RootProvider: React.FC = ({ children }) => {
 
   return (
     <RootContext.Provider
-      value={{ user, setUser, messages, setMessages, notices, setNotices }}
+      value={{ user, setUser, messages, setMessages, notices, setNotices, mealOrder, setMealOrder }}
     >
       {children}
     </RootContext.Provider>
