@@ -34,14 +34,14 @@ export const RootProvider: React.FC = ({ children }) => {
   const [notices, setNotices] = React.useState<INotice[]>([])
 
   // 食事の申込み
-  const [mealOrder, setMealOrder] = React.useState<IMealOrder>({
-    monday: { breakfast: true, dinner: true },
-    tuesday: { breakfast: true, dinner: true },
-    wednesday: { breakfast: true, dinner: true },
-    thursday: { breakfast: true, dinner: true },
-    friday: { breakfast: true, dinner: true },
-    saturday: { breakfast: true, dinner: true }
-  })
+  const [mealOrder, setMealOrder] = React.useState<TMealOrder>([
+    { breakfast: true, dinner: true },
+    { breakfast: true, dinner: true },
+    { breakfast: true, dinner: true },
+    { breakfast: true, dinner: true },
+    { breakfast: true, dinner: true },
+    { breakfast: true, dinner: true }
+  ])
 
   // メッセージの取得
   React.useEffect(() => {
