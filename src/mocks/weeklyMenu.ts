@@ -1,4 +1,16 @@
-export const weekEnum = [
+type TWeek = {
+  name: string
+  breakfast: string
+  dinner: string
+  color:
+    | { info: true }
+    | { danger: true }
+    | { primary: true }
+    | { success: true }
+    | { warning: true }
+}
+
+export const weekEnum: TWeek[] = [
   {
     name: '月',
     breakfast: 'さつまあげ',
