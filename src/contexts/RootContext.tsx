@@ -66,7 +66,16 @@ export const RootProvider: React.FC = ({ children }) => {
 
   return (
     <RootContext.Provider
-      value={{ user, setUser, messages, setMessages, notices, setNotices, mealOrder, setMealOrder }}
+      value={{
+        user,
+        setUser,
+        messages,
+        setMessages,
+        notices,
+        setNotices,
+        mealOrder,
+        setMealOrder
+      }}
     >
       {children}
     </RootContext.Provider>
