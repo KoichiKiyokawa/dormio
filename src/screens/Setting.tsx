@@ -22,13 +22,15 @@ interface IUserInput {
   isManager: boolean
 }
 
-export default () => {
+export default ({navigation}) => {
   const { user, setUser } = React.useContext(RootContext)
   const [currentInput, setCurrentInput] = React.useState<IUserInput>({
     ...user,
     roomNumber: `${user.roomNumber}`,
     id: `${user.id}`
   })
+
+  const [isInputValid, setIsInputValid] = React.useState(true)
 
   /**
    * Inputが変更されたときの処理
@@ -41,7 +43,7 @@ export default () => {
 
     // ナンバーパッドの場合
     if (isNumber) {
-      value = value ? `${parseInt(value)}` : '' // 01 => 0に変換。空文字の場合にNanと出ないようにする
+      value = value ? `${parseInt(value)}` : '' // 01 => 1に変換。空文字の場合にNanと出ないようにする
     }
 
     setCurrentInput({
@@ -50,12 +52,32 @@ export default () => {
     })
   }
 
+  /**
+   * 入力が有効かを判定
+   */
+  const verifyInput = () => {
+    for (const property in currentInput) {
+      if (currentInput[property].toString().length === 0) {
+        setIsInputValid(false)
+        return
+      }
+    }
+
+    setIsInputValid(true)
+  }
+
+  React.useEffect(() => {
+    verifyInput()
+  }, [currentInput])
+
   const onPressConfirm = () => {
     setUser({
       ...currentInput,
       roomNumber: parseInt(currentInput.roomNumber),
       id: parseInt(currentInput.id)
     })
+
+    navigation.navigate('Home')
   }
 
   return (
@@ -107,6 +129,8 @@ export default () => {
           }}
         >
           <Button
+            disabled={!isInputValid}
+            onPress={onPressConfirm}
             bordered
             info
             style={{ marginTop: 10, width: '66%', justifyContent: 'center' }}
