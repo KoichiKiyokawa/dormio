@@ -22,7 +22,7 @@ interface IUserInput {
   isManager: boolean
 }
 
-export default ({navigation}) => {
+export default ({ navigation }) => {
   const { user, setUser } = React.useContext(RootContext)
   const [currentInput, setCurrentInput] = React.useState<IUserInput>({
     ...user,
