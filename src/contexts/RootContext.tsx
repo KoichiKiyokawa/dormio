@@ -63,7 +63,7 @@ export const RootProvider: React.FC = ({ children }) => {
       .collection('mealOrders')
       .doc('trusty')
       .onSnapshot(documentSnapshot => {
-        setMealOrders(documentSnapshot.data() as IMealOrder[])
+        setMealOrders(documentSnapshot.data().weeklyOrder as IMealOrder[])
       })
   })
 
