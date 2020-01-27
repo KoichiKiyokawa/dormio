@@ -32,7 +32,7 @@ const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation
                   button
                   icon
                   onPress={() => {
-                    navigation.navigate('ManagerChat')
+                    navigation.navigate('ManagerChat', {userName:user.name})
                   }}
                 >
                   <Left>

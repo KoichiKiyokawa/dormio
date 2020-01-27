@@ -49,7 +49,7 @@ const AppNavigator = createStackNavigator({
   ManagerChat: {
     screen: Manager,
     navigationOptions: ({ navigation }) => ({
-      header: () => <Nav title="管理人" showBackButton navigation={navigation} />
+      header: () => <Nav title={navigation.getParam('userName', '管理人')} showBackButton navigation={navigation} />
     })
   },
   ResidentsChat: {
