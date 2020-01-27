@@ -7,6 +7,9 @@ interface IContext {
   user: IUser
   setUser: (arg: IUser) => void
 
+  inManagerRoom: boolean
+  setInManagerRoom: (arg: boolean) => void
+
   messages: IMessage[]
   setMessages: (arg: IMessage[]) => void
 
@@ -27,6 +30,8 @@ export const RootProvider: React.FC = ({ children }) => {
     isManager: true
   })
 
+  const [inManagerRoom, setInManagerRoom] = React.useState(true)
+
   // チャットのメッセージ
   const [messages, setMessages] = React.useState<IMessage[]>([])
 
@@ -35,6 +40,18 @@ export const RootProvider: React.FC = ({ children }) => {
 
   // 食事の申込み一覧
   const [mealOrders, setMealOrders] = React.useState<IMealOrder[]>([])
+
+  // 管理人の居場所
+  React.useEffect(() => {
+    const unsubscribe = db
+      .collection('managerLocation')
+      .doc('trusty')
+      .onSnapshot(documentSnapshot => {
+        setInManagerRoom(documentSnapshot.data().inManagerRoom)
+      })
+
+    return () => unsubscribe()
+  }, [])
 
   // メッセージの取得
   React.useEffect(() => {
@@ -65,13 +82,17 @@ export const RootProvider: React.FC = ({ children }) => {
       .onSnapshot(documentSnapshot => {
         setMealOrders(documentSnapshot.data().weeklyOrder as IMealOrder[])
       })
-  })
+
+    return () => unsubscribe()
+  }, [])
 
   return (
     <RootContext.Provider
       value={{
         user,
         setUser,
+        inManagerRoom,
+        setInManagerRoom,
         messages,
         setMessages,
         notices,

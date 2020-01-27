@@ -1,4 +1,5 @@
 import { db } from '../plugins/firebase'
+
 const defaultEachDayOrder = () => ({ breakfast: true, dinner: true })
 
 const defaultWeeklyOrder = () => ({
@@ -32,3 +33,7 @@ const order = [
 db.collection('mealOrders')
   .doc('trusty')
   .set({ weeklyOrder: order })
+
+db.collection('managerLocation')
+  .doc('trusty')
+  .set({ inManagerRoom: true })

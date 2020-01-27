@@ -11,17 +11,11 @@ import { rowStyle, cellStyle } from '../styles'
 export default () => {
   const { user, mealOrders, setMealOrders } = React.useContext(RootContext)
   const currentUserOrder: IMealOrder =
-    mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber) ||
-    mealOrders[0]
+    mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber) || mealOrders[0]
 
-  const onOrderSwitched = (
-    weekIndex: number,
-    mealType: 'breakfast' | 'dinner'
-  ) => {
+  const onOrderSwitched = (weekIndex: number, mealType: 'breakfast' | 'dinner') => {
     const weekName = weekNames[weekIndex]
-    currentUserOrder.order[weekName][mealType] = !currentUserOrder.order[
-      weekName
-    ][mealType]
+    currentUserOrder.order[weekName][mealType] = !currentUserOrder.order[weekName][mealType]
     setMealOrders(
       mealOrders.map(eachOrder => {
         if (eachOrder.roomNumber === currentUserOrder.roomNumber) {
@@ -43,11 +37,7 @@ export default () => {
           <Col style={cellStyle} />
           <Col>
             <Centerize vertical>
-              <Icon
-                type="MaterialIcons"
-                name="wb-sunny"
-                style={{ color: 'orange' }}
-              />
+              <Icon type="MaterialIcons" name="wb-sunny" style={{ color: 'orange' }} />
               <Badge style={{ backgroundColor: 'white' }}>
                 <Text style={{ color: 'black' }}>朝食</Text>
               </Badge>

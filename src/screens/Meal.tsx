@@ -1,14 +1,6 @@
 import React from 'react'
 import { Grid, Col, Row } from 'react-native-easy-grid'
-import {
-  Badge,
-  Card,
-  CardItem,
-  Container,
-  Content,
-  Icon,
-  Text
-} from 'native-base'
+import { Badge, Card, CardItem, Container, Content, Icon, Text } from 'native-base'
 
 import Centerize from '../components/Centerize'
 import MealOrder from '../components/MealOrder'
@@ -33,11 +25,7 @@ export default () => {
               <Col style={cellStyle} />
               <Col>
                 <Centerize vertical>
-                  <Icon
-                    type="MaterialIcons"
-                    name="wb-sunny"
-                    style={{ color: 'orange' }}
-                  />
+                  <Icon type="MaterialIcons" name="wb-sunny" style={{ color: 'orange' }} />
                   <Badge style={{ backgroundColor: 'white' }}>
                     <Text style={{ color: 'black' }}>朝食</Text>
                   </Badge>
@@ -45,11 +33,7 @@ export default () => {
               </Col>
               <Col>
                 <Centerize vertical>
-                  <Icon
-                    type="FontAwesome5"
-                    name="moon"
-                    style={{ color: 'gold' }}
-                  />
+                  <Icon type="FontAwesome5" name="moon" style={{ color: 'gold' }} />
                   <Badge style={{ backgroundColor: 'white' }}>
                     <Text style={{ color: 'black' }}>夕食</Text>
                   </Badge>
@@ -68,9 +52,7 @@ export default () => {
                 <Col>
                   <Centerize vertical>
                     <Badge style={{ backgroundColor: 'white' }}>
-                      <Text style={{ color: 'black' }}>
-                        {weekDay.breakfast}
-                      </Text>
+                      <Text style={{ color: 'black' }}>{weekDay.breakfast}</Text>
                     </Badge>
                   </Centerize>
                 </Col>

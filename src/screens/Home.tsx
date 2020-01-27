@@ -1,16 +1,5 @@
 import React from 'react'
-import {
-  Body,
-  Button,
-  Card,
-  CardItem,
-  Container,
-  Content,
-  Icon,
-  Left,
-  Text,
-  Right
-} from 'native-base'
+import { Body, Button, Card, CardItem, Container, Content, Icon, Left, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
 
 import { RootContext } from '../contexts/RootContext'
@@ -33,11 +22,7 @@ export default () => {
         {/* 管理人の情報 */}
         <Card>
           <CardItem header>
-            <FontAwesome5
-              name="user-shield"
-              size={24}
-              style={{ marginRight: 10 }}
-            />
+            <FontAwesome5 name="user-shield" size={24} style={{ marginRight: 10 }} />
             <Text>管理人さん情報</Text>
           </CardItem>
           <CardItem>
@@ -69,20 +54,13 @@ export default () => {
         {/* お知らせ */}
         <Card>
           <CardItem header>
-            <FontAwesome5
-              name="bullhorn"
-              color="teal"
-              size={24}
-              style={{ marginRight: 10 }}
-            />
+            <FontAwesome5 name="bullhorn" color="teal" size={24} style={{ marginRight: 10 }} />
             <Text>お知らせ</Text>
           </CardItem>
           {notices.map((notice, i) => (
             <CardItem key={i}>
               <Left>
-                <Text style={{ marginRight: 10, color: 'silver' }}>
-                  {parseToMonthWithDay(notice.date)}
-                </Text>
+                <Text style={{ marginRight: 10, color: 'silver' }}>{parseToMonthWithDay(notice.date)}</Text>
                 <Text>{notice.text}</Text>
               </Left>
               <Right>

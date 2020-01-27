@@ -1,18 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import {
-  Body,
-  Button,
-  Container,
-  Content,
-  Left,
-  List,
-  Input,
-  ListItem,
-  Text,
-  Switch,
-  Right
-} from 'native-base'
+import { Body, Button, Container, Content, Left, List, Input, ListItem, Text, Switch, Right } from 'native-base'
 import { RootContext } from '../contexts/RootContext'
 
 interface IUserInput {
@@ -35,10 +23,7 @@ export default ({ navigation }) => {
   /**
    * Inputが変更されたときの処理
    */
-  const onChangeInput = (
-    keyWithValue: { [key: string]: string },
-    isNumber = false
-  ) => {
+  const onChangeInput = (keyWithValue: { [key: string]: string }, isNumber = false) => {
     let [key, value] = Object.entries(keyWithValue)[0]
 
     // ナンバーパッドの場合
@@ -94,10 +79,7 @@ export default ({ navigation }) => {
           </ListItem>
           <ListItem>
             <Text style={{ width: 100 }}>名前</Text>
-            <Input
-              value={currentInput.name}
-              onChangeText={val => onChangeInput({ name: val })}
-            />
+            <Input value={currentInput.name} onChangeText={val => onChangeInput({ name: val })} />
           </ListItem>
           <ListItem>
             <Text style={{ width: 100 }}>ID</Text>
@@ -115,9 +97,7 @@ export default ({ navigation }) => {
             <Right>
               <Switch
                 value={currentInput.isManager}
-                onValueChange={checked =>
-                  setCurrentInput({ ...currentInput, isManager: checked })
-                }
+                onValueChange={checked => setCurrentInput({ ...currentInput, isManager: checked })}
               />
             </Right>
           </ListItem>

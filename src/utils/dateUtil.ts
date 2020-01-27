@@ -1,11 +1,4 @@
-export const weekNames = [
-  'monday',
-  'tuesday',
-  'wednesday',
-  'thursday',
-  'friday',
-  'saturday'
-]
+export const weekNames = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
 export const parseToMonthWithDay = (date: Date) => {
   const month = date.getMonth() + 1

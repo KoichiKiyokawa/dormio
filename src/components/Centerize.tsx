@@ -12,11 +12,7 @@ type Styles = {
   justifyContent?: string
 }
 
-const Centerize: React.FC<Props> = ({
-  horizontal = false,
-  vertical = false,
-  children
-}) => {
+const Centerize: React.FC<Props> = ({ horizontal = false, vertical = false, children }) => {
   const styles: ViewStyle = { flexDirection: 'row' }
   if (vertical) styles.alignItems = 'center'
   if (horizontal) styles.justifyContent = 'center'

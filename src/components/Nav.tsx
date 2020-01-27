@@ -1,14 +1,5 @@
 import React from 'react'
-import {
-  Left,
-  Header,
-  Body,
-  Button,
-  Icon,
-  Right,
-  Text,
-  Title
-} from 'native-base'
+import { Left, Header, Body, Button, Icon, Right, Text, Title } from 'native-base'
 import { NavigationScreenProp } from 'react-navigation'
 
 type Props = {
@@ -18,12 +9,7 @@ type Props = {
   navigation: NavigationScreenProp<null>
 }
 
-const Nav: React.FC<Props> = ({
-  title,
-  showBackButton = false,
-  showSettingButton = false,
-  navigation
-}) => (
+const Nav: React.FC<Props> = ({ title, showBackButton = false, showSettingButton = false, navigation }) => (
   <Header>
     <Left>
       {showBackButton && (

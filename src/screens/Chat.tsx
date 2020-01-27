@@ -1,24 +1,11 @@
 import React from 'react'
-import {
-  Badge,
-  Body,
-  Container,
-  Content,
-  Icon,
-  Left,
-  List,
-  ListItem,
-  Text,
-  Right
-} from 'native-base'
+import { Badge, Body, Container, Content, Icon, Left, List, ListItem, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { NavigationScreenProp } from 'react-navigation'
 
 import Nav from '../components/Nav'
 
-const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({
-  navigation
-}) => {
+const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
   const unreadCount = {
     manager: 2,
     residents: 23

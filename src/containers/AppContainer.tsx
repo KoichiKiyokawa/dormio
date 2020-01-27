@@ -19,25 +19,19 @@ const MainNavigator = createBottomTabNavigator({
   Home: {
     screen: Home,
     navigationOptions: () => ({
-      tabBarIcon: ({ tintColor }) => (
-        <FontAwesome5 name="home" color={tintColor} size={24} />
-      )
+      tabBarIcon: ({ tintColor }) => <FontAwesome5 name="home" color={tintColor} size={24} />
     })
   },
   Meal: {
     screen: Meal,
     navigationOptions: () => ({
-      tabBarIcon: ({ tintColor }) => (
-        <FontAwesome5 name="utensils" color={tintColor} size={24} />
-      )
+      tabBarIcon: ({ tintColor }) => <FontAwesome5 name="utensils" color={tintColor} size={24} />
     })
   },
   Chat: {
     screen: Chat,
     navigationOptions: () => ({
-      tabBarIcon: ({ tintColor }) => (
-        <FontAwesome5 name="comments" color={tintColor} size={24} />
-      )
+      tabBarIcon: ({ tintColor }) => <FontAwesome5 name="comments" color={tintColor} size={24} />
     })
   }
 })
@@ -48,30 +42,20 @@ const AppNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => {
       const labelEnum = ['ホーム', '食事', 'チャット']
       return {
-        header: () => (
-          <Nav
-            title={labelEnum[navigation.state.index]}
-            showSettingButton
-            navigation={navigation}
-          />
-        )
+        header: () => <Nav title={labelEnum[navigation.state.index]} showSettingButton navigation={navigation} />
       }
     }
   },
   ManagerChat: {
     screen: Manager,
     navigationOptions: ({ navigation }) => ({
-      header: () => (
-        <Nav title="管理人" showBackButton navigation={navigation} />
-      )
+      header: () => <Nav title="管理人" showBackButton navigation={navigation} />
     })
   },
   ResidentsChat: {
     screen: Residents,
     navigationOptions: ({ navigation }) => ({
-      header: () => (
-        <Nav title="住人みんな" showBackButton navigation={navigation} />
-      )
+      header: () => <Nav title="住人みんな" showBackButton navigation={navigation} />
     })
   },
   Setting: {
