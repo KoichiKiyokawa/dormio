@@ -5,7 +5,7 @@ import { Card, CardItem, Text } from 'native-base'
 import { RootContext } from '../contexts/RootContext'
 import Centerize from '../components/Centerize'
 import CircleOrCross from '../components/CircleOrCross'
-import {getWeekName}from"../utils/dateUtil"
+import { getWeekName } from '../utils/dateUtil'
 
 export default () => {
   const { mealOrders } = React.useContext(RootContext)
