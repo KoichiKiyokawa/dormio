@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Row, Col } from 'react-native-easy-grid'
-import { Card, CardItem, Switch, Text } from 'native-base'
+import { Card, CardItem, Text } from 'native-base'
 
 import { RootContext } from '../contexts/RootContext'
 import Centerize from '../components/Centerize'
@@ -15,9 +15,11 @@ export default () => {
         <Text>今日の食事申し込み</Text>
       </CardItem>
       <Grid>
-        <Row>
+        <Row style={{ borderBottomWidth: 1 }}>
           <Col>
-            <Text>部屋番号</Text>
+            <Centerize vertical horizontal>
+              <Text>部屋番号</Text>
+            </Centerize>
           </Col>
           <Col>
             <Text>名前</Text>
@@ -30,12 +32,16 @@ export default () => {
           </Col>
         </Row>
         {mealOrders.map(({ roomNumber, name, order }, i) => (
-          <Row key={i}>
+          <Row key={i} style={{ borderBottomWidth: 1 }}>
             <Col>
-              <Text>{roomNumber}</Text>
+              <Centerize vertical horizontal>
+                <Text>{roomNumber}</Text>
+              </Centerize>
             </Col>
             <Col>
-              <Text>{name}</Text>
+              <Centerize vertical>
+                <Text style={{ paddingTop: 3 }}>{name}</Text>
+              </Centerize>
             </Col>
             <Col>
               <CircleOrCross value={order.breakfast} />
