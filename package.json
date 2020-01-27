@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "pre": "prettier --write './**/*.{js,ts,tsx}'"
+    "pre": "prettier --write './**/*.{js,ts,tsx}'",
+    "seed": "ts-node src/utils/seeds"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.6",
@@ -33,6 +34,7 @@
     "@types/react-native": "~0.60.23",
     "babel-preset-expo": "~8.0.0",
     "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
     "typescript": "~3.6.3"
   },
   "private": true
