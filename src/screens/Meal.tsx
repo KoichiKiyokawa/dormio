@@ -1,4 +1,5 @@
 import React from 'react'
+import { Grid, Col, Row } from 'react-native-easy-grid'
 import {
   Badge,
   Card,
@@ -6,17 +7,18 @@ import {
   Container,
   Content,
   Icon,
-  Switch,
   Text
 } from 'native-base'
-import { Col, Row, Grid } from 'react-native-easy-grid'
 
 import Centerize from '../components/Centerize'
 import MealOrder from '../components/MealOrder'
+import MealOrderList from '../components/MealOrderList'
+import { RootContext } from '../contexts/RootContext'
 import { weekEnum } from '../mocks/weeklyMenu'
 import { rowStyle, cellStyle } from '../styles'
 
 export default () => {
+  const { user } = React.useContext(RootContext)
   return (
     <Container>
       <Content>
@@ -83,8 +85,13 @@ export default () => {
           </Grid>
         </Card>
 
-        {/* 食事の申し込み */}
-        <MealOrder />
+        {user.isManager ? (
+          // 管理人用住人の食事申し込み一覧
+          <MealOrderList />
+        ) : (
+          // 住人用 食事の申し込み
+          <MealOrder />
+        )}
       </Content>
     </Container>
   )

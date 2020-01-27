@@ -8,12 +8,19 @@ import { weekEnum } from '../mocks/weeklyMenu'
 import { rowStyle, cellStyle } from '../styles'
 
 export default () => {
-  const { mealOrder, setMealOrder } = React.useContext(RootContext)
+  const { user, mealOrders, setMealOrders } = React.useContext(RootContext)
 
-  const onOrderSwitched = (weekIndex: number, mealType: 'breakfast'|'dinner') => {
-    const _order = mealOrder
-    _order[weekIndex][mealType] = !mealOrder[weekIndex][mealType]
-    setMealOrder(_order)
+  const currentUserOrder = mealOrders.find(
+    eachOrder => eachOrder.roomNumber === user.roomNumber
+  ).order
+
+  const onOrderSwitched = (
+    weekIndex: number,
+    mealType: 'breakfast' | 'dinner'
+  ) => {
+    const _order = mealOrders
+    _order[weekIndex][mealType] = !mealOrders[weekIndex][mealType]
+    setMealOrders(_order)
   }
 
   return (
@@ -57,14 +64,17 @@ export default () => {
             <Col>
               <Centerize vertical>
                 <Badge style={{ paddingLeft: 25, backgroundColor: 'white' }}>
-                  <Switch value={mealOrder[i].breakfast} onValueChange={val=>onOrderSwitched(i, 'breakfast')}/>
+                  <Switch
+                    value={currentUserOrder.breakfast}
+                    onValueChange={val => onOrderSwitched(i, 'breakfast')}
+                  />
                 </Badge>
               </Centerize>
             </Col>
             <Col>
               <Centerize vertical>
                 <Badge style={{ paddingLeft: 25, backgroundColor: 'white' }}>
-                  <Switch value={mealOrder[i].dinner} />
+                  <Switch value={currentUserOrder.dinner} />
                 </Badge>
               </Centerize>
             </Col>

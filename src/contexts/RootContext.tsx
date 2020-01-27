@@ -13,8 +13,8 @@ interface IContext {
   notices: INotice[]
   setNotices: (arg: INotice[]) => void
 
-  mealOrder: IMealOrder
-  setMealOrder: (arg: IMealOrder) => void
+  mealOrders: IMealOrder[]
+  setMealOrders: (arg: IMealOrder[]) => void
 }
 
 export const RootContext = React.createContext<Partial<IContext>>(null)
@@ -33,14 +33,23 @@ export const RootProvider: React.FC = ({ children }) => {
   // お知らせ
   const [notices, setNotices] = React.useState<INotice[]>([])
 
-  // 食事の申込み
-  const [mealOrder, setMealOrder] = React.useState<TMealOrder>([
-    { breakfast: true, dinner: true },
-    { breakfast: true, dinner: true },
-    { breakfast: true, dinner: true },
-    { breakfast: true, dinner: true },
-    { breakfast: true, dinner: true },
-    { breakfast: true, dinner: true }
+  // 食事の申込み一覧
+  const [mealOrders, setMealOrders] = React.useState<IMealOrder[]>([
+    { roomNumber: 101, name: '佐藤', order: { breakfast: true, dinner: true } },
+    { roomNumber: 102, name: '佐藤', order: { breakfast: true, dinner: true } },
+    { roomNumber: 103, name: '佐藤', order: { breakfast: true, dinner: true } },
+    { roomNumber: 104, name: '佐藤', order: { breakfast: true, dinner: true } },
+    { roomNumber: 105, name: '佐藤', order: { breakfast: true, dinner: true } },
+    { roomNumber: 201, name: '鈴木', order: { breakfast: true, dinner: true } },
+    { roomNumber: 202, name: '鈴木', order: { breakfast: true, dinner: true } },
+    { roomNumber: 203, name: '鈴木', order: { breakfast: true, dinner: true } },
+    { roomNumber: 204, name: '鈴木', order: { breakfast: true, dinner: true } },
+    { roomNumber: 205, name: '鈴木', order: { breakfast: true, dinner: true } },
+    { roomNumber: 301, name: '清川', order: { breakfast: true, dinner: true } },
+    { roomNumber: 302, name: '田中', order: { breakfast: true, dinner: true } },
+    { roomNumber: 303, name: '田中', order: { breakfast: true, dinner: true } },
+    { roomNumber: 304, name: '田中', order: { breakfast: true, dinner: true } },
+    { roomNumber: 305, name: '田中', order: { breakfast: true, dinner: true } }
   ])
 
   // メッセージの取得
@@ -64,6 +73,15 @@ export const RootProvider: React.FC = ({ children }) => {
     return () => unsubscribe()
   }, [])
 
+  // 食事の申込み
+  React.useEffect(() => {
+    const unsubscribe = db
+      .collection('mealOrders')
+      .onSnapshot(querySnapshot => {
+        // setMealOrder
+      })
+  })
+
   return (
     <RootContext.Provider
       value={{
@@ -73,8 +91,8 @@ export const RootProvider: React.FC = ({ children }) => {
         setMessages,
         notices,
         setNotices,
-        mealOrder,
-        setMealOrder
+        mealOrders,
+        setMealOrders
       }}
     >
       {children}
