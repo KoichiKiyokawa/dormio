@@ -10,24 +10,27 @@ import { rowStyle, cellStyle } from '../styles'
 
 export default () => {
   const { user, mealOrders, setMealOrders } = React.useContext(RootContext)
-
-  const currentUserOrder:IMealOrder = mealOrders.find(
-    eachOrder => eachOrder.roomNumber === user.roomNumber
-  )
+  const currentUserOrder: IMealOrder =
+    mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber) ||
+    mealOrders[0]
 
   const onOrderSwitched = (
     weekIndex: number,
     mealType: 'breakfast' | 'dinner'
   ) => {
     const weekName = weekNames[weekIndex]
-    currentUserOrder.order[weekName][mealType] = !currentUserOrder.order[weekName][mealType]
-    setMealOrders(mealOrders.map(eachOrder => {
-      if (eachOrder.roomNumber === currentUserOrder.roomNumber) {
-        return currentUserOrder
-      }
+    currentUserOrder.order[weekName][mealType] = !currentUserOrder.order[
+      weekName
+    ][mealType]
+    setMealOrders(
+      mealOrders.map(eachOrder => {
+        if (eachOrder.roomNumber === currentUserOrder.roomNumber) {
+          return currentUserOrder
+        }
 
-      return eachOrder
-    }))
+        return eachOrder
+      })
+    )
   }
 
   return (
@@ -81,7 +84,10 @@ export default () => {
             <Col>
               <Centerize vertical>
                 <Badge style={{ paddingLeft: 25, backgroundColor: 'white' }}>
-                  <Switch value={currentUserOrder.order[weekNames[i]].dinner} />
+                  <Switch
+                    value={currentUserOrder.order[weekNames[i]].dinner}
+                    onValueChange={() => onOrderSwitched(i, 'dinner')}
+                  />
                 </Badge>
               </Centerize>
             </Col>
