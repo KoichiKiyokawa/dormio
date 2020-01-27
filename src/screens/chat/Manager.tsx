@@ -5,7 +5,7 @@ import { RootContext } from '../../contexts/RootContext'
 import { db } from '../../plugins/firebase'
 
 export default () => {
-  const { user, messages, setMessages } = React.useContext(RootContext)
+  const { user, messages } = React.useContext(RootContext)
 
   const currentUser = {
     _id: user.id,

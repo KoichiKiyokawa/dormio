@@ -3,15 +3,16 @@ import { Badge, Body, Container, Content, Icon, Left, List, ListItem, Text, Righ
 import { FontAwesome5 } from '@expo/vector-icons'
 import { NavigationScreenProp } from 'react-navigation'
 
+import { RootContext } from '../contexts/RootContext'
 import Nav from '../components/Nav'
 
 const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
   const unreadCount = {
-    manager: 2,
-    residents: 23
+    manager: 0,
+    residents: 0
   }
 
-  const onPushManager = () => {}
+  const { user, messages } = React.useContext(RootContext)
 
   return (
     <Container>
@@ -20,26 +21,57 @@ const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation
           <ListItem itemHeader>
             <Text>メッセージのやりとりをする</Text>
           </ListItem>
-          <ListItem
-            button
-            icon
-            onPress={() => {
-              navigation.navigate('ManagerChat')
-            }}
-          >
-            <Left>
-              <FontAwesome5 name="user-shield" size={24} />
-            </Left>
-            <Body>
-              <Text>管理人</Text>
-            </Body>
-            <Right>
-              <Badge>
-                <Text>{unreadCount.manager}</Text>
-              </Badge>
-              <Icon name="arrow-forward" />
-            </Right>
-          </ListItem>
+          {user.isManager ? (
+            messages
+              .filter(({ user }) => user._id !== 0)
+              .map(({ user }) => (
+                <ListItem
+                  button
+                  icon
+                  onPress={() => {
+                    navigation.navigate('ManagerChat')
+                  }}
+                >
+                  <Left>
+                    <FontAwesome5 name="user" size={24} />
+                  </Left>
+                  <Body>
+                    <Text>{user.name}</Text>
+                  </Body>
+                  <Right>
+                    {unreadCount.manager > 0 && (
+                      <Badge>
+                        <Text>{unreadCount.manager}</Text>
+                      </Badge>
+                    )}
+                    <Icon name="arrow-forward" />
+                  </Right>
+                </ListItem>
+              ))
+          ) : (
+            <ListItem
+              button
+              icon
+              onPress={() => {
+                navigation.navigate('ManagerChat')
+              }}
+            >
+              <Left>
+                <FontAwesome5 name="user-shield" size={24} />
+              </Left>
+              <Body>
+                <Text>管理人</Text>
+              </Body>
+              <Right>
+                {unreadCount.manager > 0 && (
+                  <Badge>
+                    <Text>{unreadCount.manager}</Text>
+                  </Badge>
+                )}
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+          )}
           <ListItem
             button
             icon
@@ -54,9 +86,11 @@ const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation
               <Text>住人みんな</Text>
             </Body>
             <Right>
-              <Badge>
-                <Text>{unreadCount.residents}</Text>
-              </Badge>
+              {unreadCount.residents > 0 && (
+                <Badge>
+                  <Text>{unreadCount.residents}</Text>
+                </Badge>
+              )}
               <Icon name="arrow-forward" />
             </Right>
           </ListItem>
