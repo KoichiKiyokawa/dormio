@@ -26,6 +26,11 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "寮で暮らす、すべての人のために…"
+    "description": "寮で暮らす、すべての人のために…",
+    "androidStatusBarColor": "#334393",
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#334393"
+    }
   }
 }
