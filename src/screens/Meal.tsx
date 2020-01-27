@@ -19,6 +19,7 @@ import { rowStyle, cellStyle } from '../styles'
 
 export default () => {
   const { user } = React.useContext(RootContext)
+
   return (
     <Container>
       <Content>

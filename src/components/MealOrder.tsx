@@ -5,6 +5,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid'
 import { RootContext } from '../contexts/RootContext'
 import Centerize from '../components/Centerize'
 import { weekEnum } from '../mocks/weeklyMenu'
+import { weekNames } from '../utils/dateUtil'
 import { rowStyle, cellStyle } from '../styles'
 
 export default () => {
@@ -13,13 +14,16 @@ export default () => {
   const currentUserOrder = mealOrders.find(
     eachOrder => eachOrder.roomNumber === user.roomNumber
   ).order
+  console.log(mealOrders)
+  console.log(currentUserOrder)
 
   const onOrderSwitched = (
     weekIndex: number,
     mealType: 'breakfast' | 'dinner'
   ) => {
     const _order = mealOrders
-    _order[weekIndex][mealType] = !mealOrders[weekIndex][mealType]
+    const weekName = weekNames[weekIndex]
+    _order[weekName][mealType] = !mealOrders[weekName][mealType]
     setMealOrders(_order)
   }
 
@@ -40,8 +44,7 @@ export default () => {
               />
               <Badge style={{ backgroundColor: 'white' }}>
                 <Text style={{ color: 'black' }}>朝食</Text>
-              </Badge>
-            </Centerize>
+              </Badge> </Centerize>
           </Col>
           <Col>
             <Centerize vertical>
@@ -65,8 +68,8 @@ export default () => {
               <Centerize vertical>
                 <Badge style={{ paddingLeft: 25, backgroundColor: 'white' }}>
                   <Switch
-                    value={currentUserOrder.breakfast}
-                    onValueChange={val => onOrderSwitched(i, 'breakfast')}
+                    value={currentUserOrder[weekNames[i]].breakfast}
+                    onValueChange={() => onOrderSwitched(i, 'breakfast')}
                   />
                 </Badge>
               </Centerize>
@@ -74,7 +77,7 @@ export default () => {
             <Col>
               <Centerize vertical>
                 <Badge style={{ paddingLeft: 25, backgroundColor: 'white' }}>
-                  <Switch value={currentUserOrder.dinner} />
+                  <Switch value={currentUserOrder[weekNames[i]].dinner} />
                 </Badge>
               </Centerize>
             </Col>

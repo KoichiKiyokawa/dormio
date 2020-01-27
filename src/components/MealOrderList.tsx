@@ -5,9 +5,11 @@ import { Card, CardItem, Text } from 'native-base'
 import { RootContext } from '../contexts/RootContext'
 import Centerize from '../components/Centerize'
 import CircleOrCross from '../components/CircleOrCross'
+import {getWeekName}from"../utils/dateUtil"
 
 export default () => {
   const { mealOrders } = React.useContext(RootContext)
+  const todayWeekName = getWeekName(new Date())
 
   return (
     <Card>
@@ -44,10 +46,10 @@ export default () => {
               </Centerize>
             </Col>
             <Col>
-              <CircleOrCross value={order.breakfast} />
+              <CircleOrCross value={order[todayWeekName].breakfast} />
             </Col>
             <Col>
-              <CircleOrCross value={order.dinner} />
+              <CircleOrCross value={order[todayWeekName].dinner} />
             </Col>
           </Row>
         ))}
