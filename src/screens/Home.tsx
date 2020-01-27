@@ -2,12 +2,12 @@ import React from 'react'
 import { Body, Button, Card, CardItem, Container, Content, Icon, Left, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
 
+import { db } from '../plugins/firebase'
 import { RootContext } from '../contexts/RootContext'
 import { parseToMonthWithDay } from '../utils/dateUtil'
 
 export default () => {
-  const [inManagerRoom, setIsManagerRoom] = React.useState(true)
-  const { notices, setNotices } = React.useContext(RootContext)
+  const { user, inManagerRoom, notices, setNotices } = React.useContext(RootContext)
 
   React.useEffect(() => {
     setNotices([
@@ -15,6 +15,16 @@ export default () => {
       { text: '近隣住民から苦情がきました', date: new Date() }
     ])
   }, [])
+
+  const onChangeManagerLocation = (inManagerRoom: boolean) => {
+    if (!user.isManager) {
+      return
+    }
+
+    db.collection('managerLocation')
+      .doc('trusty')
+      .set({ inManagerRoom })
+  }
 
   return (
     <Container>
@@ -33,7 +43,7 @@ export default () => {
                   rounded
                   light={!inManagerRoom}
                   info={inManagerRoom}
-                  onPress={() => setIsManagerRoom(!inManagerRoom)}
+                  onPress={() => onChangeManagerLocation(true)}
                 >
                   <Text style={{ color: 'white' }}>管理室にいます</Text>
                 </Button>
@@ -42,7 +52,7 @@ export default () => {
                   light={inManagerRoom}
                   danger={!inManagerRoom}
                   style={{ marginLeft: 10 }}
-                  onPress={() => setIsManagerRoom(!inManagerRoom)}
+                  onPress={() => onChangeManagerLocation(false)}
                 >
                   <Text style={{ color: 'white' }}>出かけています</Text>
                 </Button>

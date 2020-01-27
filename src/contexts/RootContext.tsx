@@ -92,7 +92,6 @@ export const RootProvider: React.FC = ({ children }) => {
         user,
         setUser,
         inManagerRoom,
-        setInManagerRoom,
         messages,
         setMessages,
         notices,

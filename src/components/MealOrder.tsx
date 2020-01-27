@@ -2,6 +2,7 @@ import React from 'react'
 import { Badge, Card, CardItem, Text, Icon, Switch } from 'native-base'
 import { Col, Row, Grid } from 'react-native-easy-grid'
 
+import { db } from '../plugins/firebase'
 import { RootContext } from '../contexts/RootContext'
 import Centerize from '../components/Centerize'
 import { weekEnum } from '../mocks/weeklyMenu'
@@ -16,15 +17,17 @@ export default () => {
   const onOrderSwitched = (weekIndex: number, mealType: 'breakfast' | 'dinner') => {
     const weekName = weekNames[weekIndex]
     currentUserOrder.order[weekName][mealType] = !currentUserOrder.order[weekName][mealType]
-    setMealOrders(
-      mealOrders.map(eachOrder => {
-        if (eachOrder.roomNumber === currentUserOrder.roomNumber) {
-          return currentUserOrder
-        }
+    const newOrder = mealOrders.map(eachOrder => {
+      if (eachOrder.roomNumber === currentUserOrder.roomNumber) {
+        return currentUserOrder
+      }
 
-        return eachOrder
-      })
-    )
+      return eachOrder
+    })
+
+    db.collection('mealOrders')
+      .doc('trusty')
+      .set({ weeklyOrder: newOrder })
   }
 
   return (
