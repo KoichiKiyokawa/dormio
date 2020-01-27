@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from "lodash"
 import { Badge, Body, Container, Content, Icon, Left, List, ListItem, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { NavigationScreenProp } from 'react-navigation'
@@ -22,10 +23,12 @@ const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation
             <Text>メッセージのやりとりをする</Text>
           </ListItem>
           {user.isManager ? (
-            messages
-              .filter(({ user }) => user._id !== 0)
-              .map(({ user }) => (
+            _.uniqBy(
+              messages.filter(({ user }) => user._id !== 0),
+              'user._id'
+            ).map(({ user },i) => (
                 <ListItem
+                  key={i}
                   button
                   icon
                   onPress={() => {
