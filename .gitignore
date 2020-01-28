@@ -15,3 +15,7 @@ web-report/
 
 # env
 env.ts
+
+# jest
+.jest/
+
