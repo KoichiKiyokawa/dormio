@@ -67,7 +67,7 @@ export default () => {
             <FontAwesome5 name="bullhorn" color="teal" size={24} style={{ marginRight: 10 }} />
             <Text>お知らせ</Text>
           </CardItem>
-          {notices.map((notice, i) => (
+          {notices && notices.map((notice: INotice, i: number) => (
             <CardItem key={i}>
               <Left>
                 <Text style={{ marginRight: 10, color: 'silver' }}>{parseToMonthWithDay(notice.date)}</Text>

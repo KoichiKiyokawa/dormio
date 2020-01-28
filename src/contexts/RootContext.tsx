@@ -20,7 +20,7 @@ interface IContext {
   setMealOrders: (arg: IMealOrder[]) => void
 }
 
-export const RootContext = React.createContext<Partial<IContext>>(null)
+export const RootContext = React.createContext<Partial<IContext>>({} as IContext)
 
 export const RootProvider: React.FC = ({ children }) => {
   const [user, setUser] = React.useState<IUser>({

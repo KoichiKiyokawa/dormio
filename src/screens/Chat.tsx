@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from "lodash"
+import _ from 'lodash'
 import { Badge, Body, Container, Content, Icon, Left, List, ListItem, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { NavigationScreenProp } from 'react-navigation'
@@ -26,31 +26,31 @@ const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation
             _.uniqBy(
               messages.filter(({ user }) => user._id !== 0),
               'user._id'
-            ).map(({ user },i) => (
-                <ListItem
-                  key={i}
-                  button
-                  icon
-                  onPress={() => {
-                    navigation.navigate('ManagerChat', {userName:user.name})
-                  }}
-                >
-                  <Left>
-                    <FontAwesome5 name="user" size={24} />
-                  </Left>
-                  <Body>
-                    <Text>{user.name}</Text>
-                  </Body>
-                  <Right>
-                    {unreadCount.manager > 0 && (
-                      <Badge>
-                        <Text>{unreadCount.manager}</Text>
-                      </Badge>
-                    )}
-                    <Icon name="arrow-forward" />
-                  </Right>
-                </ListItem>
-              ))
+            ).map(({ user }, i) => (
+              <ListItem
+                key={i}
+                button
+                icon
+                onPress={() => {
+                  navigation.navigate('ManagerChat', { userName: user.name })
+                }}
+              >
+                <Left>
+                  <FontAwesome5 name="user" size={24} />
+                </Left>
+                <Body>
+                  <Text>{user.name}</Text>
+                </Body>
+                <Right>
+                  {unreadCount.manager > 0 && (
+                    <Badge>
+                      <Text>{unreadCount.manager}</Text>
+                    </Badge>
+                  )}
+                  <Icon name="arrow-forward" />
+                </Right>
+              </ListItem>
+            ))
           ) : (
             <ListItem
               button
