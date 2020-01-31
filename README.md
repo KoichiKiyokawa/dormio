@@ -14,5 +14,5 @@
 
 
 ### お知らせ機能
-お知らせをタップすると詳細が読めます。
+お知らせをタップすると詳細が読めます。  
 ![notice_movie](https://user-images.githubusercontent.com/40315079/73530564-151b1d80-445c-11ea-8bfd-a21be46bf501.gif)
