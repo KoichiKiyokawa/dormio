@@ -1,4 +1,5 @@
 declare interface INotice {
-  text: string
+  title: string
+  body: string
   date: Date
 }

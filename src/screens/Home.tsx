@@ -6,13 +6,17 @@ import { db } from '../plugins/firebase'
 import { RootContext } from '../contexts/RootContext'
 import { parseToMonthWithDay } from '../utils/dateUtil'
 
-export default () => {
+export default ({ navigation }) => {
   const { user, inManagerRoom, notices, setNotices } = React.useContext(RootContext)
 
   React.useEffect(() => {
     setNotices([
-      { text: '自転車が盗まれました', date: new Date() },
-      { text: '近隣住民から苦情がきました', date: new Date() }
+      { title: '自転車が盗まれました', body: '鍵の閉め忘れにはくれぐれも気をつけてください。', date: new Date() },
+      {
+        title: '近隣住民から苦情がきました',
+        body: '夜中に寮生が騒いいるせいで眠れないと苦情が来ました。夜中に騒ぐのはやめてください。',
+        date: new Date()
+      }
     ])
   }, [])
 
@@ -67,17 +71,24 @@ export default () => {
             <FontAwesome5 name="bullhorn" color="teal" size={24} style={{ marginRight: 10 }} />
             <Text>お知らせ</Text>
           </CardItem>
-          {notices && notices.map((notice: INotice, i: number) => (
-            <CardItem key={i}>
-              <Left>
-                <Text style={{ marginRight: 10, color: 'silver' }}>{parseToMonthWithDay(notice.date)}</Text>
-                <Text>{notice.text}</Text>
-              </Left>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-          ))}
+          {notices &&
+            notices.map((notice: INotice, i: number) => (
+              <CardItem
+                key={i}
+                button
+                onPress={() => {
+                  navigation.navigate('NoticeDetail', { notice })
+                }}
+              >
+                <Left>
+                  <Text style={{ marginRight: 10, color: 'silver' }}>{parseToMonthWithDay(notice.date)}</Text>
+                  <Text>{notice.title}</Text>
+                </Left>
+                <Right>
+                  <Icon name="arrow-forward" />
+                </Right>
+              </CardItem>
+            ))}
         </Card>
       </Content>
     </Container>

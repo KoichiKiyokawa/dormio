@@ -9,6 +9,7 @@ import { FontAwesome5 } from '@expo/vector-icons'
 
 import Nav from '../components/Nav'
 import Home from '../screens/Home'
+import NoticeDetail from '../screens/NoticeDetail'
 import Meal from '../screens/Meal'
 import Chat from '../screens/Chat'
 import Manager from '../screens/chat/Manager'
@@ -45,6 +46,12 @@ const AppNavigator = createStackNavigator({
         header: () => <Nav title={labelEnum[navigation.state.index]} showSettingButton navigation={navigation} />
       }
     }
+  },
+  NoticeDetail: {
+    screen: NoticeDetail,
+    navigationOptions: ({ navigation }) => ({
+      header: () => <Nav title="お知らせ" showBackButton navigation={navigation} />
+    })
   },
   ManagerChat: {
     screen: Manager,
