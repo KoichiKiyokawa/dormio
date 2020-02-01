@@ -1,4 +1,4 @@
-import reducer, {initialState, setUser}from"../user"
+import reducer, { initialState, setUser } from '../user'
 
 describe('user reducer test', () => {
   test('can set new user', () => {
