@@ -1,16 +1,16 @@
 import React from 'react'
 import { Grid, Col, Row } from 'react-native-easy-grid'
 import { Badge, Card, CardItem, Container, Content, Icon, Text } from 'native-base'
+import { useSelector } from 'react-redux'
 
 import Centerize from '../components/Centerize'
 import MealOrder from '../components/MealOrder'
 import MealOrderList from '../components/MealOrderList'
-import { RootContext } from '../contexts/RootContext'
 import { weekEnum } from '../mocks/weeklyMenu'
 import { rowStyle, cellStyle } from '../styles'
 
 export default () => {
-  const { user } = React.useContext(RootContext)
+  const user = useSelector(state => state.user)
 
   return (
     <Container>

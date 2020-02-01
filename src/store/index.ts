@@ -3,8 +3,8 @@ import { firebaseReducer } from 'react-redux-firebase'
 import { createFirestoreInstance, firestoreReducer } from 'redux-firestore'
 
 import { firebase } from '../plugins/firebase'
-
 import UserReducer from './user'
+
 const store = createStore(
   combineReducers({
     firebase: firebaseReducer,
@@ -16,9 +16,6 @@ const store = createStore(
 export const reactReduxFirebaseProps = {
   firebase,
   config: {},
-  // config: {
-  //   userProfile: 'users'
-  // },
   dispatch: store.dispatch,
   createFirestoreInstance
 }
