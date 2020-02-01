@@ -5,19 +5,20 @@ import { useSelector } from 'react-redux'
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 import { NavigationScreenProp } from 'react-navigation'
 
+import { RootState } from '../store'
 import { parseToMonthWithDay } from '../utils/dateUtil'
 
 const Home: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
   const firestore = useFirestore()
   useFirestoreConnect(['managerLocation/trusty', 'notices'])
 
-  const user = useSelector(state => state.user)
-  const rawManagerLocation = useSelector(state => state.firestore.data.managerLocation)
+  const user = useSelector((state: RootState) => state.user)
+  const rawManagerLocation = useSelector((state: RootState) => state.firestore.data.managerLocation)
   const managerLocation = rawManagerLocation ? rawManagerLocation.trusty : { inManagerRoom: true }
 
-  const rawNotices = useSelector(state => state.firestore.ordered.notices)
+  const rawNotices = useSelector((state: RootState) => state.firestore.ordered.notices)
   const notices = rawNotices
-    ? rawNotices.map(({ date, ...other }) => ({ ...other, date: date.toDate() }))
+    ? rawNotices.map((rawNotice: INotice) => ({ ...rawNotice, date: rawNotice.date.toDate() }))
     : [{ title: '', body: '', date: new Date() }]
 
   const onChangeManagerLocation = (inManagerRoom: boolean) => {
