@@ -2,7 +2,7 @@ import { parseToMonthWithDay, getWeekName } from '../dateUtil'
 
 describe('test of date util', () => {
   test('parse 2000/1/1 to 1/1', () => {
-    expect(parseToMonthWithDay(new Date(2000, 1 - 1 ,1))).toEqual('1/1')
+    expect(parseToMonthWithDay(new Date(2000, 1 - 1, 1))).toEqual('1/1')
   })
 
   test('parse 2000/10/10 to 10/10', () => {
