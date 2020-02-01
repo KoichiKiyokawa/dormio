@@ -51,7 +51,7 @@ const Setting: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigat
         continue
       }
 
-      if (value === '') {
+      if (value.length === 0) {
         setIsInputValid(false)
         return
       }
@@ -124,6 +124,7 @@ const Setting: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigat
             onPress={onPressConfirm}
             bordered
             info
+            light={!isInputValid}
             style={{ marginTop: 10, width: '66%', justifyContent: 'center' }}
           >
             <Text>確定</Text>
