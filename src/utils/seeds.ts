@@ -1,5 +1,17 @@
 import { db } from '../plugins/firebase'
 
+const notices = [
+  { title: '自転車が盗まれました', body: '鍵の閉め忘れにはくれぐれも気をつけてください。', date: new Date() },
+  {
+    title: '近隣住民から苦情がきました',
+    body: '夜中に寮生が騒いいるせいで眠れないと苦情が来ました。夜中に騒ぐのはやめてください。',
+    date: new Date()
+  }
+]
+notices.forEach(notice => {
+  db.collection('notices').add({ ...notice })
+})
+
 const defaultEachDayOrder = () => ({ breakfast: true, dinner: true })
 
 const defaultWeeklyOrder = () => ({
