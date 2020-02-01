@@ -1,8 +1,32 @@
 # Dormio
 ![](https://github.com/KoichiKiyokawa/dormio/workflows/Test/badge.svg)
 
-## 説明
+## 概要
 寮で暮らす人々の生活を便利にするツールです。寮の住人と管理人向けです。
+- [特徴](#特徴)
+- [実行方法](#実行方法)
+- [機能](#機能)
+
+## 特徴
+- React Nativeによるクロスプラットフォーム開発
+- 自動テスト
+- Firestoreによる、リアルタイムなデータ同期
+
+## 実行方法
+### Expo
+1. スマホに[Expo Client](https://expo.io/tools#client)をインストールしてください。
+1. Expo Clientを起動し、`Scan QR Code`をタップしてください。
+1. https://expo.io/@kiyoshi910/dormio にあるQRコードを読み取るとDormioが起動します。
+
+### ローカル環境
+#### 依存関係
+- Node
+- yarn
+```bash
+$ yarn install
+$ yarn dev
+# ブラウザが起動するのでQRコードをExpo Clientアプリで読み取ってください
+```
 
 ## 機能
 ### 管理人の所在地がわかる！
