@@ -1,31 +1,31 @@
 import React from 'react'
 import { Body, Button, Card, CardItem, Container, Content, Icon, Left, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
+import { useSelector } from 'react-redux'
+import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 
-import { db } from '../plugins/firebase'
-import { RootContext } from '../contexts/RootContext'
 import { parseToMonthWithDay } from '../utils/dateUtil'
 
 export default ({ navigation }) => {
-  const { user, inManagerRoom, notices, setNotices } = React.useContext(RootContext)
+  const firestore = useFirestore()
+  useFirestoreConnect(['managerLocation/trusty', 'notices'])
 
-  React.useEffect(() => {
-    setNotices([
-      { title: '自転車が盗まれました', body: '鍵の閉め忘れにはくれぐれも気をつけてください。', date: new Date() },
-      {
-        title: '近隣住民から苦情がきました',
-        body: '夜中に寮生が騒いいるせいで眠れないと苦情が来ました。夜中に騒ぐのはやめてください。',
-        date: new Date()
-      }
-    ])
-  }, [])
+  const user = useSelector(state => state.user)
+  const rawManagerLocation = useSelector(state => state.firestore.data.managerLocation)
+  const managerLocation = rawManagerLocation ? rawManagerLocation.trusty : { inManagerRoom: true }
+
+  const rawNotices = useSelector(state => state.firestore.ordered.notices)
+  const notices = rawNotices
+    ? rawNotices.map(({ date, ...other }) => ({ ...other, date: date.toDate() }))
+    : [{ title: '', body: '', date: new Date() }]
 
   const onChangeManagerLocation = (inManagerRoom: boolean) => {
     if (!user.isManager) {
       return
     }
 
-    db.collection('managerLocation')
+    firestore
+      .collection('managerLocation')
       .doc('trusty')
       .set({ inManagerRoom })
   }
@@ -45,16 +45,16 @@ export default ({ navigation }) => {
               <Body style={{ justifyContent: 'center', flexDirection: 'row' }}>
                 <Button
                   rounded
-                  light={!inManagerRoom}
-                  info={inManagerRoom}
+                  light={!managerLocation.inManagerRoom}
+                  info={managerLocation.inManagerRoom}
                   onPress={() => onChangeManagerLocation(true)}
                 >
                   <Text style={{ color: 'white' }}>管理室にいます</Text>
                 </Button>
                 <Button
                   rounded
-                  light={inManagerRoom}
-                  danger={!inManagerRoom}
+                  light={managerLocation.inManagerRoom}
+                  danger={!managerLocation.inManagerRoom}
                   style={{ marginLeft: 10 }}
                   onPress={() => onChangeManagerLocation(false)}
                 >

@@ -3,17 +3,22 @@ import _ from 'lodash'
 import { Badge, Body, Container, Content, Icon, Left, List, ListItem, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { NavigationScreenProp } from 'react-navigation'
+import { useSelector } from 'react-redux'
+import { useFirestoreConnect } from 'react-redux-firebase'
 
 import { RootContext } from '../contexts/RootContext'
 import Nav from '../components/Nav'
 
 const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
+  useFirestoreConnect(() => [{ collection: 'messages' }])
+
   const unreadCount = {
     manager: 0,
     residents: 0
   }
 
-  const { user, messages } = React.useContext(RootContext)
+  const messages = useSelector(state => state.firestore.ordered.messages) || []
+  const user = useSelector(state => state.user)
 
   return (
     <Container>
