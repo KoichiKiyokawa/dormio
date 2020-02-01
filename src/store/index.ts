@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   user: UserReducer
 })
 
-const store = createStore( rootReducer)
+const store = createStore(rootReducer)
 export default store
 
 export type RootState = ReturnType<typeof rootReducer>
@@ -22,4 +22,3 @@ export const reactReduxFirebaseProps = {
   dispatch: store.dispatch,
   createFirestoreInstance
 }
-

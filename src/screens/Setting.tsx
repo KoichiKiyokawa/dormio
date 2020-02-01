@@ -4,6 +4,7 @@ import { Body, Button, Container, Content, Left, List, Input, ListItem, Text, Sw
 import { useSelector, useDispatch } from 'react-redux'
 import { NavigationScreenProp } from 'react-navigation'
 
+import {RootState}from"../store"
 import { setUser } from '../store/user'
 
 interface IUserInput {
@@ -14,7 +15,7 @@ interface IUserInput {
 }
 
 const Setting: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
-  const user = useSelector(state => state.user)
+  const user = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()
 
   const [currentInput, setCurrentInput] = React.useState<IUserInput>({
