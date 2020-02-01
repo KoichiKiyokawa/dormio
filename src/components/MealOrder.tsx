@@ -5,7 +5,7 @@ import { useFirestoreConnect, useFirestore } from 'react-redux-firebase'
 
 import Centerize from '../components/Centerize'
 import { weekEnum } from '../mocks/weeklyMenu'
-import { weekNames } from '../utils/dateUtil'
+import { mealWeekNames } from '../utils/dateUtil'
 import { rowStyle, cellStyle } from '../styles'
 import { useSelector } from 'react-redux'
 
@@ -15,11 +15,10 @@ export default () => {
   const user = useSelector(state => state.user)
   const _mealOrders = useSelector(state => state.firestore.data.mealOrders.trusty)
   const mealOrders = _mealOrders ? _mealOrders.weeklyOrder : []
-  const currentUserOrder: IMealOrder =
-    mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber)
+  const currentUserOrder: IMealOrder = mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber)
 
   const onOrderSwitched = (weekIndex: number, mealType: 'breakfast' | 'dinner') => {
-    const weekName = weekNames[weekIndex]
+    const weekName = mealWeekNames[weekIndex]
     currentUserOrder.order[weekName][mealType] = !currentUserOrder.order[weekName][mealType]
     const newOrder = mealOrders.map(eachOrder => {
       if (eachOrder.roomNumber === currentUserOrder.roomNumber) {
@@ -29,7 +28,10 @@ export default () => {
       return eachOrder
     })
 
-    firebase.collection('mealOrders').doc('trusty').set({ weeklyOrder: newOrder })
+    firebase
+      .collection('mealOrders')
+      .doc('trusty')
+      .set({ weeklyOrder: newOrder })
   }
 
   return (
@@ -70,7 +72,7 @@ export default () => {
               <Centerize vertical>
                 <Badge style={{ paddingLeft: 25, backgroundColor: 'white' }}>
                   <Switch
-                    value={currentUserOrder.order[weekNames[i]].breakfast}
+                    value={currentUserOrder.order[mealWeekNames[i]].breakfast}
                     onValueChange={() => onOrderSwitched(i, 'breakfast')}
                   />
                 </Badge>
@@ -80,7 +82,7 @@ export default () => {
               <Centerize vertical>
                 <Badge style={{ paddingLeft: 25, backgroundColor: 'white' }}>
                   <Switch
-                    value={currentUserOrder.order[weekNames[i]].dinner}
+                    value={currentUserOrder.order[mealWeekNames[i]].dinner}
                     onValueChange={() => onOrderSwitched(i, 'dinner')}
                   />
                 </Badge>
