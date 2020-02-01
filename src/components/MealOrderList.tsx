@@ -1,14 +1,17 @@
 import React from 'react'
 import { Grid, Row, Col } from 'react-native-easy-grid'
 import { Card, CardItem, Text } from 'native-base'
+import { useSelector } from 'react-redux'
+import { useFirestoreConnect } from 'react-redux-firebase'
 
-import { RootContext } from '../contexts/RootContext'
 import Centerize from '../components/Centerize'
 import CircleOrCross from '../components/CircleOrCross'
 import { getWeekName } from '../utils/dateUtil'
 
 export default () => {
-  const { mealOrders } = React.useContext(RootContext)
+  useFirestoreConnect('mealOrders')
+  const _mealOrders = useSelector(state => state.firestore.data.mealOrders)
+  const mealOrders = _mealOrders ? _mealOrders.trusty.weeklyOrder : []
   const todayWeekName = getWeekName(new Date())
 
   return (

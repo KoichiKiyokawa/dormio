@@ -7,7 +7,7 @@ interface Action {
   payload: IUser
 }
 
-export const setNew = (newState: IUser): Action => ({ type: ActionTypes.SET_NEW, payload: newState })
+export const setUser = (newState: IUser): Action => ({ type: ActionTypes.SET_NEW, payload: newState })
 
 const initialState: IUser = {
   roomNumber: 0,

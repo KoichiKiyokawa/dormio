@@ -1,18 +1,22 @@
 import React from 'react'
 import { Badge, Card, CardItem, Text, Icon, Switch } from 'native-base'
 import { Col, Row, Grid } from 'react-native-easy-grid'
+import { useFirestoreConnect, useFirestore } from 'react-redux-firebase'
 
-import { db } from '../plugins/firebase'
-import { RootContext } from '../contexts/RootContext'
 import Centerize from '../components/Centerize'
 import { weekEnum } from '../mocks/weeklyMenu'
 import { weekNames } from '../utils/dateUtil'
 import { rowStyle, cellStyle } from '../styles'
+import { useSelector } from 'react-redux'
 
 export default () => {
-  const { user, mealOrders, setMealOrders } = React.useContext(RootContext)
+  const firebase = useFirestore()
+  useFirestoreConnect('mealOrders')
+  const user = useSelector(state => state.user)
+  const _mealOrders = useSelector(state => state.firestore.data.mealOrders)
+  const mealOrders = _mealOrders ? _mealOrders.trusty.weeklyOrder : []
   const currentUserOrder: IMealOrder =
-    mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber) || mealOrders[0]
+    mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber)
 
   const onOrderSwitched = (weekIndex: number, mealType: 'breakfast' | 'dinner') => {
     const weekName = weekNames[weekIndex]
@@ -25,9 +29,7 @@ export default () => {
       return eachOrder
     })
 
-    db.collection('mealOrders')
-      .doc('trusty')
-      .set({ weeklyOrder: newOrder })
+    firebase.collection('mealOrders').doc('trusty').set({ weeklyOrder: newOrder })
   }
 
   return (

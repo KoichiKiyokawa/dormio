@@ -1,7 +1,9 @@
 import React from 'react'
 import { View } from 'react-native'
 import { Body, Button, Container, Content, Left, List, Input, ListItem, Text, Switch, Right } from 'native-base'
-import { RootContext } from '../contexts/RootContext'
+import { useSelector, useDispatch } from 'react-redux'
+
+import {setUser} from "../store/user"
 
 interface IUserInput {
   roomNumber: string
@@ -11,7 +13,8 @@ interface IUserInput {
 }
 
 export default ({ navigation }) => {
-  const { user, setUser } = React.useContext(RootContext)
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
   const [currentInput, setCurrentInput] = React.useState<IUserInput>({
     ...user,
     roomNumber: `${user.roomNumber}`,
@@ -56,11 +59,11 @@ export default ({ navigation }) => {
   }, [currentInput])
 
   const onPressConfirm = () => {
-    setUser({
+    dispatch(setUser({
       ...currentInput,
       roomNumber: parseInt(currentInput.roomNumber),
       id: parseInt(currentInput.id)
-    })
+    }))
 
     navigation.navigate('Home')
   }
