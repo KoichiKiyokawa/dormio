@@ -6,8 +6,7 @@ import { NavigationScreenProp } from 'react-navigation'
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect } from 'react-redux-firebase'
 
-import { RootContext } from '../contexts/RootContext'
-import Nav from '../components/Nav'
+import {RootState} from "../store"
 
 const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
   useFirestoreConnect(() => [{ collection: 'messages' }])
@@ -17,8 +16,8 @@ const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation
     residents: 0
   }
 
-  const messages = useSelector(state => state.firestore.ordered.messages) || []
-  const user = useSelector(state => state.user)
+  const messages: RawMessage[] = useSelector((state: RootState) => state.firestore.ordered.messages) || []
+  const user = useSelector((state: RootState) => state.user)
 
   return (
     <Container>

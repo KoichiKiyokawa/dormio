@@ -4,14 +4,15 @@ import { Card, CardItem, Text } from 'native-base'
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect } from 'react-redux-firebase'
 
+import {RootState}from"../store"
 import Centerize from '../components/Centerize'
 import CircleOrCross from '../components/CircleOrCross'
 import { getWeekName } from '../utils/dateUtil'
 
 export default () => {
   useFirestoreConnect('mealOrders')
-  const _mealOrders = useSelector(state => state.firestore.data.mealOrders)
-  const mealOrders = _mealOrders ? _mealOrders.trusty.weeklyOrder : []
+  const _mealOrders = useSelector((state: RootState) => state.firestore.data.mealOrders)
+  const mealOrders: IMealOrder[] = _mealOrders ? _mealOrders.trusty.weeklyOrder : []
   const todayWeekName = getWeekName(new Date())
 
   return (
@@ -41,7 +42,7 @@ export default () => {
               <Text>夕食</Text>
             </Col>
           </Row>
-          {mealOrders.map(({ roomNumber, name, order }, i) => (
+          {mealOrders.map(({roomNumber,name,order}, i) => (
             <Row key={i} style={{ borderBottomWidth: 1 }}>
               <Col>
                 <Centerize vertical horizontal>
