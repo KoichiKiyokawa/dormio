@@ -11,10 +11,10 @@ import { useSelector } from 'react-redux'
 
 export default () => {
   const firebase = useFirestore()
-  useFirestoreConnect('mealOrders')
+  useFirestoreConnect('mealOrders/trusty')
   const user = useSelector(state => state.user)
-  const _mealOrders = useSelector(state => state.firestore.data.mealOrders)
-  const mealOrders = _mealOrders ? _mealOrders.trusty.weeklyOrder : []
+  const _mealOrders = useSelector(state => state.firestore.data.mealOrders.trusty)
+  const mealOrders = _mealOrders ? _mealOrders.weeklyOrder : []
   const currentUserOrder: IMealOrder =
     mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber)
 
