@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { Body, Button, Container, Content, Left, List, Input, ListItem, Text, Switch, Right } from 'native-base'
 import { useSelector, useDispatch } from 'react-redux'
+import { NavigationScreenProp } from 'react-navigation'
 
 import { setUser } from '../store/user'
 
@@ -12,9 +13,10 @@ interface IUserInput {
   isManager: boolean
 }
 
-export default ({ navigation }) => {
+const Setting: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
+
   const [currentInput, setCurrentInput] = React.useState<IUserInput>({
     ...user,
     roomNumber: `${user.roomNumber}`,
@@ -44,8 +46,12 @@ export default ({ navigation }) => {
    * 入力が有効かを判定
    */
   const verifyInput = () => {
-    for (const property in currentInput) {
-      if (currentInput[property].toString().length === 0) {
+    for (const value of Object.values(currentInput)) {
+      if (typeof value === 'boolean') {
+        continue
+      }
+
+      if (value === '') {
         setIsInputValid(false)
         return
       }
@@ -91,7 +97,7 @@ export default ({ navigation }) => {
             <Input
               value={`${currentInput.id}`}
               keyboardType="numeric"
-              onChangeText={val => onChangeInput({ id: val })}
+              onChangeText={val => onChangeInput({ id: val }, true)}
             />
           </ListItem>
           <ListItem>
@@ -127,3 +133,5 @@ export default ({ navigation }) => {
     </Container>
   )
 }
+
+export default Setting
