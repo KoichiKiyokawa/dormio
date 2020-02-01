@@ -3,10 +3,11 @@ import { Body, Button, Card, CardItem, Container, Content, Icon, Left, Text, Rig
 import { FontAwesome5 } from '@expo/vector-icons'
 import { useSelector } from 'react-redux'
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
+import { NavigationScreenProp } from 'react-navigation'
 
 import { parseToMonthWithDay } from '../utils/dateUtil'
 
-export default ({ navigation }) => {
+const Home: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
   const firestore = useFirestore()
   useFirestoreConnect(['managerLocation/trusty', 'notices'])
 
@@ -94,3 +95,5 @@ export default ({ navigation }) => {
     </Container>
   )
 }
+
+export default Home
