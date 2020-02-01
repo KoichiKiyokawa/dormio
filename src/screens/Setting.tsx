@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { Body, Button, Container, Content, Left, List, Input, ListItem, Text, Switch, Right } from 'native-base'
 import { useSelector, useDispatch } from 'react-redux'
 
-import {setUser} from "../store/user"
+import { setUser } from '../store/user'
 
 interface IUserInput {
   roomNumber: string
@@ -59,11 +59,13 @@ export default ({ navigation }) => {
   }, [currentInput])
 
   const onPressConfirm = () => {
-    dispatch(setUser({
-      ...currentInput,
-      roomNumber: parseInt(currentInput.roomNumber),
-      id: parseInt(currentInput.id)
-    }))
+    dispatch(
+      setUser({
+        ...currentInput,
+        roomNumber: parseInt(currentInput.roomNumber),
+        id: parseInt(currentInput.id)
+      })
+    )
 
     navigation.navigate('Home')
   }

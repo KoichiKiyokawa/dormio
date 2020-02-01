@@ -1,4 +1,7 @@
-export const weekNames = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+type Week = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday'
+
+export const mealWeekNames: Week[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+const weekNames: Week[] = ['sunday', ...mealWeekNames]
 
 export const parseToMonthWithDay = (date: Date) => {
   const month = date.getMonth() + 1
@@ -7,7 +10,8 @@ export const parseToMonthWithDay = (date: Date) => {
   return `${month}/${day}`
 }
 
-export const getWeekName = (date: Date) => {
+export const getWeekName = (date: Date): Week => {
   const weekIndex = date.getDay()
-  return weekNames[weekIndex - 1]
+
+  return weekNames[weekIndex]
 }
