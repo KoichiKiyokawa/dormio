@@ -5,13 +5,16 @@ import { createFirestoreInstance, firestoreReducer } from 'redux-firestore'
 import { firebase } from '../plugins/firebase'
 import UserReducer from './user'
 
-const store = createStore(
-  combineReducers({
-    firebase: firebaseReducer,
-    firestore: firestoreReducer,
-    user: UserReducer
-  })
-)
+const rootReducer = combineReducers({
+  firebase: firebaseReducer,
+  firestore: firestoreReducer,
+  user: UserReducer
+})
+
+const store = createStore( rootReducer)
+export default store
+
+export type RootState = ReturnType<typeof rootReducer>
 
 export const reactReduxFirebaseProps = {
   firebase,
@@ -20,4 +23,3 @@ export const reactReduxFirebaseProps = {
   createFirestoreInstance
 }
 
-export default store

@@ -1,5 +1,7 @@
+import firebase from 'firebase'
+
 declare interface INotice {
   title: string
   body: string
-  date: Date
+  date: Date | firebase.firestore.Timestamp
 }

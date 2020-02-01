@@ -19,44 +19,50 @@ export default () => {
       <CardItem header>
         <Text>今日の食事申し込み</Text>
       </CardItem>
-      <Grid>
-        <Row style={{ borderBottomWidth: 1 }}>
-          <Col>
-            <Centerize vertical horizontal>
-              <Text>部屋番号</Text>
-            </Centerize>
-          </Col>
-          <Col>
-            <Text>名前</Text>
-          </Col>
-          <Col>
-            <Text>朝食</Text>
-          </Col>
-          <Col>
-            <Text>夕食</Text>
-          </Col>
-        </Row>
-        {mealOrders.map(({ roomNumber, name, order }, i) => (
-          <Row key={i} style={{ borderBottomWidth: 1 }}>
+      {todayWeekName === 'sunday' ? (
+        <CardItem>
+        <Text>今日は食事の提供はありません</Text>
+      </CardItem>
+      ) : (
+        <Grid>
+          <Row style={{ borderBottomWidth: 1 }}>
             <Col>
               <Centerize vertical horizontal>
-                <Text>{roomNumber}</Text>
+                <Text>部屋番号</Text>
               </Centerize>
             </Col>
             <Col>
-              <Centerize vertical>
-                <Text style={{ paddingTop: 3 }}>{name}</Text>
-              </Centerize>
+              <Text>名前</Text>
             </Col>
             <Col>
-              <CircleOrCross value={order[todayWeekName].breakfast} />
+              <Text>朝食</Text>
             </Col>
             <Col>
-              <CircleOrCross value={order[todayWeekName].dinner} />
+              <Text>夕食</Text>
             </Col>
           </Row>
-        ))}
-      </Grid>
+          {mealOrders.map(({ roomNumber, name, order }, i) => (
+            <Row key={i} style={{ borderBottomWidth: 1 }}>
+              <Col>
+                <Centerize vertical horizontal>
+                  <Text>{roomNumber}</Text>
+                </Centerize>
+              </Col>
+              <Col>
+                <Centerize vertical>
+                  <Text style={{ paddingTop: 3 }}>{name}</Text>
+                </Centerize>
+              </Col>
+              <Col>
+                <CircleOrCross value={order[todayWeekName].breakfast} />
+              </Col>
+              <Col>
+                <CircleOrCross value={order[todayWeekName].dinner} />
+              </Col>
+            </Row>
+          ))}
+        </Grid>
+      )}
     </Card>
   )
 }
