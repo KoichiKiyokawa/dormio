@@ -9,7 +9,7 @@ interface Action {
 
 export const setUser = (newState: IUser): Action => ({ type: ActionTypes.SET_NEW, payload: newState })
 
-const initialState: IUser = {
+export const initialState: IUser = {
   roomNumber: 0,
   name: '管理人',
   id: 0,
