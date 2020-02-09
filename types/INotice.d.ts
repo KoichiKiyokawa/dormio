@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-declare interface INotice {
+export interface INotice {
   title: string
   body: string
   date: Date | firebase.firestore.Timestamp

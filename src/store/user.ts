@@ -1,3 +1,5 @@
+import { IUser } from '../../types/IUser'
+
 enum ActionTypes {
   SET_NEW
 }

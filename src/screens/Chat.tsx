@@ -6,7 +6,8 @@ import { NavigationScreenProp } from 'react-navigation'
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect } from 'react-redux-firebase'
 
-import {RootState} from "../store"
+import { RootState } from '../store'
+import { RawMessage } from '../../types/RawMessage'
 
 const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
   useFirestoreConnect(() => [{ collection: 'messages' }])

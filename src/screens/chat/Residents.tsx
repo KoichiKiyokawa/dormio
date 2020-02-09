@@ -9,7 +9,9 @@ export default () => {
     name: '管理人'
   }
 
-  const onSend = (messages: IMessage[]) => { console.log(messages) }
+  const onSend = (messages: IMessage[]) => {
+    console.log(messages)
+  }
 
   return <GiftedChat messages={messages} onSend={onSend} user={currentUser} />
 }

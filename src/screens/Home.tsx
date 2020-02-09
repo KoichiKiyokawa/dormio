@@ -7,6 +7,7 @@ import { NavigationScreenProp } from 'react-navigation'
 
 import { RootState } from '../store'
 import { parseToMonthWithDay } from '../utils/dateUtil'
+import { INotice } from '../../types/INotice'
 
 const Home: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
   const firestore = useFirestore()

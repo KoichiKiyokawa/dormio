@@ -4,7 +4,7 @@ import { Body, Button, Container, Content, Left, List, Input, ListItem, Text, Sw
 import { useSelector, useDispatch } from 'react-redux'
 import { NavigationScreenProp } from 'react-navigation'
 
-import {RootState}from"../store"
+import { RootState } from '../store'
 import { setUser } from '../store/user'
 
 interface IUserInput {
