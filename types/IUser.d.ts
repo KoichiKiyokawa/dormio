@@ -3,4 +3,5 @@ export interface IUser {
   name: string
   id: number
   isManager: boolean
+  isSignin: boolean
 }

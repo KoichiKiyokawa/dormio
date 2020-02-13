@@ -80,57 +80,80 @@ const Setting: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigat
   return (
     <Container>
       <Content>
-        <List>
-          <ListItem>
-            <Text style={{ width: 100 }}>部屋番号</Text>
-            <Input
-              value={`${currentInput.roomNumber}`}
-              keyboardType="numeric"
-              onChangeText={val => onChangeInput({ roomNumber: val }, true)}
-            />
-          </ListItem>
-          <ListItem>
-            <Text style={{ width: 100 }}>名前</Text>
-            <Input value={currentInput.name} onChangeText={val => onChangeInput({ name: val })} />
-          </ListItem>
-          <ListItem>
-            <Text style={{ width: 100 }}>ID</Text>
-            <Input
-              value={`${currentInput.id}`}
-              keyboardType="numeric"
-              onChangeText={val => onChangeInput({ id: val }, true)}
-            />
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text style={{ width: 100 }}>管理者</Text>
-            </Left>
-            <Body></Body>
-            <Right>
-              <Switch
-                value={currentInput.isManager}
-                onValueChange={checked => setCurrentInput({ ...currentInput, isManager: checked })}
-              />
-            </Right>
-          </ListItem>
-        </List>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center'
-          }}
-        >
-          <Button
-            disabled={!isInputValid}
-            onPress={onPressConfirm}
-            bordered
-            info
-            light={!isInputValid}
-            style={{ marginTop: 10, width: '66%', justifyContent: 'center' }}
+        {user.isSignin ? (
+          <>
+            <List>
+              <ListItem>
+                <Text style={{ width: 100 }}>部屋番号</Text>
+                <Input
+                  value={`${currentInput.roomNumber}`}
+                  keyboardType="numeric"
+                  onChangeText={val => onChangeInput({ roomNumber: val }, true)}
+                />
+              </ListItem>
+              <ListItem>
+                <Text style={{ width: 100 }}>名前</Text>
+                <Input value={currentInput.name} onChangeText={val => onChangeInput({ name: val })} />
+              </ListItem>
+              <ListItem>
+                <Text style={{ width: 100 }}>ID</Text>
+                <Input
+                  value={`${currentInput.id}`}
+                  keyboardType="numeric"
+                  onChangeText={val => onChangeInput({ id: val }, true)}
+                />
+              </ListItem>
+              <ListItem>
+                <Left>
+                  <Text style={{ width: 100 }}>管理者</Text>
+                </Left>
+                <Body></Body>
+                <Right>
+                  <Switch
+                    value={currentInput.isManager}
+                    onValueChange={checked => setCurrentInput({ ...currentInput, isManager: checked })}
+                  />
+                </Right>
+              </ListItem>
+            </List>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center'
+              }}
+            >
+              <Button
+                disabled={!isInputValid}
+                onPress={onPressConfirm}
+                bordered
+                info
+                light={!isInputValid}
+                style={{ marginTop: 10, width: '66%', justifyContent: 'center' }}
+              >
+                <Text>確定</Text>
+              </Button>
+            </View>
+          </>
+        ) : (
+          <View
+            style={{
+              flexDirection: 'column',
+              alignItems: 'center'
+            }}
           >
-            <Text>確定</Text>
-          </Button>
-        </View>
+            <View style={{ height: 24 }} />
+            <Text>ゲストモードです</Text>
+            <View style={{ height: 32 }} />
+            <Button style={{ width: '66%', justifyContent: 'center' }}>
+              <Text>新規登録</Text>
+            </Button>
+            <View style={{ height: 32 }} />
+            <Text>アカウントをお持ちの方は</Text>
+            <Text onPress={() => {}} style={{ color: 'blue' }}>
+              ログイン
+            </Text>
+          </View>
+        )}
       </Content>
     </Container>
   )
