@@ -15,8 +15,8 @@ export default () => {
   const firebase = useFirestore()
   useFirestoreConnect('mealOrders/trusty')
   const user = useSelector((state: RootState) => state.user)
-  const _mealOrders = useSelector((state: RootState) => state.firestore.data.mealOrders.trusty)
-  const mealOrders: IMealOrder[] = _mealOrders ? _mealOrders.weeklyOrder : []
+  const rawMealOrder = useSelector((state: RootState) => state.firestore.data.mealOrders.trusty)
+  const mealOrders: IMealOrder[] = rawMealOrder ? rawMealOrder.weeklyOrder : []
   const defaultUserOrder = () => ({
     roomNumber: 0,
     name: '',
