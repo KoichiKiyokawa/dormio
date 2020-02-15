@@ -17,7 +17,21 @@ export default () => {
   const user = useSelector((state: RootState) => state.user)
   const _mealOrders = useSelector((state: RootState) => state.firestore.data.mealOrders.trusty)
   const mealOrders: IMealOrder[] = _mealOrders ? _mealOrders.weeklyOrder : []
-  const currentUserOrder: IMealOrder = mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber)
+  const defaultUserOrder = () => ({
+    roomNumber: 0,
+    name: '',
+    order: {
+      monday: { breakfast: true, dinner: true },
+      tuesday: { breakfast: true, dinner: true },
+      wednesday: { breakfast: true, dinner: true },
+      thursday: { breakfast: true, dinner: true },
+      friday: { breakfast: true, dinner: true },
+      saturday: { breakfast: true, dinner: true },
+      sunday: { breakfast: true, dinner: true }
+    }
+  })
+
+  const currentUserOrder: IMealOrder = mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber) || defaultUserOrder()
 
   const onOrderSwitched = (weekIndex: number, mealType: 'breakfast' | 'dinner') => {
     const weekName = mealWeekNames[weekIndex]

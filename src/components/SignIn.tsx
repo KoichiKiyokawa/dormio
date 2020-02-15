@@ -1,14 +1,17 @@
 import React from 'react'
 import { View } from 'react-native'
 import { Button, Container, Content, Header, Input, List, ListItem, Text } from 'native-base'
-import { NavigationScreenProp } from 'react-navigation'
+import { useNavigation } from '@react-navigation/core'
 
 interface IUserInput {
   id: string
   password: string
 }
 
-const SignIn: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
+const SignIn = () => {
+  const navigation = useNavigation()
+
+  // @ts-ignore
   const [userInput, setUserInput] = React.useState<IUserInput>({ id: '', password: '' })
 
   const onPressSignInButton = () => {}

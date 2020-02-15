@@ -10,5 +10,6 @@ export interface IMealOrder {
     thursday: EachDayOrder
     friday: EachDayOrder
     saturday: EachDayOrder
+    sunday: EachDayOrder
   }
 }

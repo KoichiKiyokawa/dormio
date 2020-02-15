@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { Body, Button, Container, Content, Left, List, Input, ListItem, Text, Switch, Right } from 'native-base'
 import { useSelector, useDispatch } from 'react-redux'
-import { NavigationScreenProp } from 'react-navigation'
+import { useNavigation } from '@react-navigation/core'
 
 import { RootState } from '../store'
 import { setUser } from '../store/user'
@@ -14,7 +14,9 @@ interface IUserInput {
   isManager: boolean
 }
 
-const Setting: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
+const Setting = () => {
+  const navigation = useNavigation()
+
   const user = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()
 

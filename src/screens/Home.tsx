@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native'
 import Nav from '../components/Nav'
 import { RootState } from '../store'
 import { parseToMonthWithDay } from '../utils/dateUtil'
-import { INotice } from '../../types/INotice'
+import { INotice, IRawNotice } from '../../types/INotice'
 
 const Home = () => {
   const navigation = useNavigation()
@@ -22,7 +22,7 @@ const Home = () => {
 
   const rawNotices = useSelector((state: RootState) => state.firestore.ordered.notices)
   const notices = rawNotices
-    ? rawNotices.map((rawNotice: INotice) => ({ ...rawNotice, date: rawNotice.date.toDate() }))
+    ? rawNotices.map((rawNotice: IRawNotice) => ({ ...rawNotice, date: rawNotice.date.toDate() }))
     : [{ title: '', body: '', date: new Date() }]
 
   const onChangeManagerLocation = (inManagerRoom: boolean) => {
