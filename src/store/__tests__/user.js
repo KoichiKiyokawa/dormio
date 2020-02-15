@@ -7,7 +7,8 @@ describe('user reducer test', () => {
       roomNumber: 101,
       name: 'Taro',
       id: 101,
-      isManager: false
+      isManager: false,
+      isSignin: false
     })
 
     expect(reducer(initialState, setUser(newUser()))).toEqual(newUser())
