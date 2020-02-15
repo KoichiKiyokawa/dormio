@@ -3,7 +3,6 @@ import { Grid, Col, Row } from 'react-native-easy-grid'
 import { Badge, Card, CardItem, Container, Content, Icon, Text } from 'native-base'
 import { useSelector } from 'react-redux'
 
-import { RootState } from '../store'
 import Nav from '../components/Nav'
 import Centerize from '../components/Centerize'
 import MealOrder from '../components/MealOrder'
@@ -12,7 +11,7 @@ import { weekEnum } from '../mocks/weeklyMenu'
 import { rowStyle, cellStyle } from '../styles'
 
 export default () => {
-  const user = useSelector((state: RootState) => state.user)
+  const user = useSelector(state => state.user)
 
   return (
     <Container>

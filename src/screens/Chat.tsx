@@ -7,7 +7,6 @@ import { useFirestoreConnect } from 'react-redux-firebase'
 import { useNavigation } from '@react-navigation/core'
 
 import Nav from '../components/Nav'
-import { RootState } from '../store'
 import { RawMessage } from '../../types/RawMessage'
 import { StackParams } from '../navigations/StackNavigator'
 
@@ -21,8 +20,8 @@ const Chat = () => {
     residents: 0
   }
 
-  const messages: RawMessage[] = useSelector((state: RootState) => state.firestore.ordered.messages) || []
-  const user = useSelector((state: RootState) => state.user)
+  const messages: RawMessage[] = useSelector(state => state.firestore.ordered.messages) || []
+  const user = useSelector(state => state.user)
 
   return (
     <Container>

@@ -3,7 +3,6 @@ import { GiftedChat, IMessage } from 'react-native-gifted-chat'
 import { useSelector } from 'react-redux'
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 
-import { RootState } from '../../store'
 import { RawMessage } from '../../../types/RawMessage'
 
 export default () => {
@@ -15,7 +14,7 @@ export default () => {
     }
   ])
 
-  const rawMessages: RawMessage[] = useSelector((state: RootState) => state.firestore.ordered.messages)
+  const rawMessages: RawMessage[] = useSelector(state => state.firestore.ordered.messages)
   // id => _id, timestamps => Dateに変換
   const messages = (rawMessages || []).map(({ id, createdAt, ...other }) => ({
     ...other,
@@ -23,7 +22,7 @@ export default () => {
     createdAt: createdAt.toDate()
   }))
 
-  const user = useSelector((state: RootState) => state.user)
+  const user = useSelector(state => state.user)
 
   const currentUser = {
     _id: user.id,

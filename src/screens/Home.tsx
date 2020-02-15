@@ -6,7 +6,6 @@ import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 import { useNavigation } from '@react-navigation/native'
 
 import Nav from '../components/Nav'
-import { RootState } from '../store'
 import { parseToMonthWithDay } from '../utils/dateUtil'
 import { INotice, IRawNotice } from '../../types/INotice'
 
@@ -16,11 +15,11 @@ const Home = () => {
   const firestore = useFirestore()
   useFirestoreConnect(['managerLocation/trusty', 'notices'])
 
-  const user = useSelector((state: RootState) => state.user)
-  const rawManagerLocation = useSelector((state: RootState) => state.firestore.data.managerLocation)
+  const user = useSelector(state => state.user)
+  const rawManagerLocation = useSelector(state => state.firestore.data.managerLocation)
   const managerLocation = rawManagerLocation ? rawManagerLocation.trusty : { inManagerRoom: true }
 
-  const rawNotices = useSelector((state: RootState) => state.firestore.ordered.notices)
+  const rawNotices = useSelector(state => state.firestore.ordered.notices)
   const notices = rawNotices
     ? rawNotices.map((rawNotice: IRawNotice) => ({ ...rawNotice, date: rawNotice.date.toDate() }))
     : [{ title: '', body: '', date: new Date() }]

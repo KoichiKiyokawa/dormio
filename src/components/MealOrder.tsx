@@ -8,14 +8,13 @@ import { weekEnum } from '../mocks/weeklyMenu'
 import { mealWeekNames } from '../utils/dateUtil'
 import { rowStyle, cellStyle } from '../styles'
 import { useSelector } from 'react-redux'
-import { RootState } from '../store'
 import { IMealOrder } from '../../types/IMealOrder'
 
 export default () => {
   const firebase = useFirestore()
   useFirestoreConnect('mealOrders/trusty')
-  const user = useSelector((state: RootState) => state.user)
-  const rawMealOrder = useSelector((state: RootState) => state.firestore.data.mealOrders.trusty)
+  const user = useSelector(state => state.user)
+  const rawMealOrder = useSelector(state => state.firestore.data.mealOrders.trusty)
   const mealOrders: IMealOrder[] = rawMealOrder ? rawMealOrder.weeklyOrder : []
   const defaultUserOrder = () => ({
     roomNumber: 0,
@@ -31,7 +30,8 @@ export default () => {
     }
   })
 
-  const currentUserOrder: IMealOrder = mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber) || defaultUserOrder()
+  const currentUserOrder: IMealOrder =
+    mealOrders.find(eachOrder => eachOrder.roomNumber === user.roomNumber) || defaultUserOrder()
 
   const onOrderSwitched = (weekIndex: number, mealType: 'breakfast' | 'dinner') => {
     const weekName = mealWeekNames[weekIndex]

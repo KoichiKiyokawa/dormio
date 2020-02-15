@@ -4,7 +4,6 @@ import { Body, Button, Container, Content, Left, List, Input, ListItem, Text, Sw
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/core'
 
-import { RootState } from '../store'
 import { setUser } from '../store/user'
 
 interface IUserInput {
@@ -17,7 +16,7 @@ interface IUserInput {
 const Setting = () => {
   const navigation = useNavigation()
 
-  const user = useSelector((state: RootState) => state.user)
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
   const [currentInput, setCurrentInput] = React.useState<IUserInput>({
