@@ -8,6 +8,8 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { FontAwesome5 } from '@expo/vector-icons'
 
 import Nav from '../components/Nav'
+import SignIn from '../components/SignIn'
+import SignUp from '../components/SignUp'
 import Home from '../screens/Home'
 import NoticeDetail from '../screens/NoticeDetail'
 import Meal from '../screens/Meal'
@@ -38,6 +40,8 @@ const MainNavigator = createBottomTabNavigator({
 })
 
 const AppNavigator = createStackNavigator({
+  SignIn,
+  SignUp,
   Main: {
     screen: MainNavigator,
     navigationOptions: ({ navigation }) => {
@@ -70,8 +74,9 @@ const AppNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       header: () => <Nav title="設定" showBackButton navigation={navigation} />
     })
-  }
-})
+  },
+}
+)
 
 const AppContainer = createAppContainer(AppNavigator)
 
