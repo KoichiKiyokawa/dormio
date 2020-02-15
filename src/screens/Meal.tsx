@@ -4,6 +4,7 @@ import { Badge, Card, CardItem, Container, Content, Icon, Text } from 'native-ba
 import { useSelector } from 'react-redux'
 
 import { RootState } from '../store'
+import Nav from '../components/Nav'
 import Centerize from '../components/Centerize'
 import MealOrder from '../components/MealOrder'
 import MealOrderList from '../components/MealOrderList'
@@ -15,6 +16,7 @@ export default () => {
 
   return (
     <Container>
+      <Nav title="食事" showSettingButton />
       <Content>
         {/* メニュー */}
         <Card>

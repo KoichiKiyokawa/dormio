@@ -3,13 +3,16 @@ import { Body, Button, Card, CardItem, Container, Content, Icon, Left, Text, Rig
 import { FontAwesome5 } from '@expo/vector-icons'
 import { useSelector } from 'react-redux'
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
-import { NavigationScreenProp } from 'react-navigation'
+import { useNavigation } from '@react-navigation/native'
 
+import Nav from '../components/Nav'
 import { RootState } from '../store'
 import { parseToMonthWithDay } from '../utils/dateUtil'
 import { INotice } from '../../types/INotice'
 
-const Home: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
+const Home = () => {
+  const navigation = useNavigation()
+
   const firestore = useFirestore()
   useFirestoreConnect(['managerLocation/trusty', 'notices'])
 
@@ -35,6 +38,7 @@ const Home: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation
 
   return (
     <Container>
+      <Nav title="ホーム" showSettingButton />
       <Content>
         {/* 管理人の情報 */}
         <Card>

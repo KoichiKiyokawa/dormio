@@ -2,14 +2,18 @@ import React from 'react'
 import _ from 'lodash'
 import { Badge, Body, Container, Content, Icon, Left, List, ListItem, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
-import { NavigationScreenProp } from 'react-navigation'
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect } from 'react-redux-firebase'
+import { useNavigation } from '@react-navigation/core'
 
+import Nav from '../components/Nav'
 import { RootState } from '../store'
 import { RawMessage } from '../../types/RawMessage'
+import { StackParams } from '../navigations/StackNavigator'
 
-const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
+const Chat = () => {
+  const navigation = useNavigation()
+
   useFirestoreConnect(() => [{ collection: 'messages' }])
 
   const unreadCount = {
@@ -22,6 +26,7 @@ const Chat: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation
 
   return (
     <Container>
+      <Nav title="チャット" showSettingButton />
       <Content>
         <List>
           <ListItem itemHeader>

@@ -1,13 +1,20 @@
 import React from 'react'
-import { NavigationScreenProp } from 'react-navigation'
 import { Card, CardItem, Container, Content, Text } from 'native-base'
 import { parseToMonthWithDay } from '../utils/dateUtil'
+import { useRoute, RouteProp } from '@react-navigation/native'
 
-const NoticeDetail: React.FC<{ navigation: NavigationScreenProp<null> }> = ({ navigation }) => {
-  const { title, body, date } = navigation.getParam('notice')
+import Nav from '../components/Nav'
+import { StackParams } from '../navigations/StackNavigator'
+
+const NoticeDetail = () => {
+  const route = useRoute<RouteProp<StackParams, 'NoticeDetail'>>()
+  const {
+    notice: { title, body, date }
+  } = route.params
 
   return (
     <Container>
+      <Nav title="お知らせ" showBackButton />
       <Content>
         <Card>
           <CardItem header>

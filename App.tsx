@@ -1,5 +1,5 @@
 import React from 'react'
-import AppContainer from './src/containers/AppContainer'
+import AppContainer from './src/navigations/AppContainer'
 import { Provider } from 'react-redux'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 
