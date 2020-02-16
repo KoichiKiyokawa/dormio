@@ -1,6 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Button, Container, Content, Header, Input, List, ListItem, Text } from 'native-base'
+import { Button, Container, Content, Header, Input, List, ListItem, Spinner, Text } from 'native-base'
 import { useNavigation } from '@react-navigation/core'
 import { useDispatch } from 'react-redux'
 
@@ -16,8 +16,10 @@ const SignIn = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [error, setError] = React.useState<string>('')
+  const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   const onPressSignInButton = () => {
+    setIsLoading(true)
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -41,6 +43,7 @@ const SignIn = () => {
 
         console.warn(`error code: ${error.code} message: ${error.message}`)
       })
+      .finally(() => setIsLoading(false))
   }
 
   return (
@@ -69,10 +72,10 @@ const SignIn = () => {
         <View style={{ marginTop: 12, flexDirection: 'row', justifyContent: 'center' }}>
           <Button
             onPress={onPressSignInButton}
-            disabled={email.length + password.length === 0}
+            disabled={email.length + password.length === 0 || isLoading}
             style={{ width: '66%', justifyContent: 'center' }}
           >
-            <Text>ログイン</Text>
+            {isLoading ? <Spinner /> : <Text>ログイン</Text>}
           </Button>
         </View>
         <View style={{ marginTop: 12, flexDirection: 'column', alignItems: 'center' }}>
