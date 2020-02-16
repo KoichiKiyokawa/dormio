@@ -27,6 +27,11 @@ $ yarn install
 $ yarn dev
 # ブラウザが起動するのでQRコードをExpo Clientアプリで読み取ってください
 ```
+#### デバッグ方法
+[react-native-debugger](https://github.com/jhen0409/react-native-debugger)をインストールしてください。
+```bash
+$ yarn dev
+```
 
 ## 機能
 ### 管理人の所在地がわかる！

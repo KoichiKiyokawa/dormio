@@ -11,7 +11,11 @@ const rootReducer = combineReducers({
   user: UserReducer
 })
 
-const store = createStore(rootReducer)
+const store = createStore(
+  rootReducer,
+  // @ts-ignore
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 export default store
 
 export type RootState = ReturnType<typeof rootReducer>
