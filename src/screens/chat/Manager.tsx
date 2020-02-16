@@ -4,8 +4,12 @@ import { useSelector } from 'react-redux'
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 
 import { RawMessage } from '../../../types/RawMessage'
+import Nav from '../../components/Nav'
+import { useRoute, RouteProp } from '@react-navigation/core'
+import { StackParams } from '../../navigations/StackNavigator'
 
 export default () => {
+  const route = useRoute<RouteProp<StackParams, 'ManagerChat'>>()
   const firestore = useFirestore()
   useFirestoreConnect(() => [
     {
@@ -41,5 +45,10 @@ export default () => {
     })
   }
 
-  return <GiftedChat messages={messages} onSend={onSend} user={currentUser} />
+  return (
+    <>
+      <Nav title={route.params.partnerName} showBackButton />
+      <GiftedChat messages={messages} onSend={onSend} user={currentUser} />
+    </>
+  )
 }

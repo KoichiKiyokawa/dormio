@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/core'
 
 import { setUser } from '../store/user'
+import Nav from '../components/Nav'
 
 interface IUserInput {
   roomNumber: string
@@ -80,6 +81,7 @@ const Setting = () => {
 
   return (
     <Container>
+      <Nav title="設定" showBackButton />
       <Content>
         {user.isSignin ? (
           <>
@@ -124,11 +126,8 @@ const Setting = () => {
               }}
             >
               <Button
-                disabled={!isInputValid}
                 onPress={onPressConfirm}
-                bordered
-                info
-                light={!isInputValid}
+                disabled={!isInputValid}
                 style={{ marginTop: 10, width: '66%', justifyContent: 'center' }}
               >
                 <Text>確定</Text>

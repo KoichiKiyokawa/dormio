@@ -35,7 +35,7 @@ const SignIn = () => {
             />
           </ListItem>
           <ListItem>
-            <Input 
+            <Input
               placeholder="パスワード"
               autoCompleteType="password"
               secureTextEntry
