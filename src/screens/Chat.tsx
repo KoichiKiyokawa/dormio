@@ -3,17 +3,13 @@ import _ from 'lodash'
 import { Badge, Body, Container, Content, Icon, Left, List, ListItem, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { useSelector } from 'react-redux'
-import { useFirestoreConnect } from 'react-redux-firebase'
 import { useNavigation } from '@react-navigation/core'
 
 import Nav from '../components/Nav'
 import { RawMessage } from '../../types/RawMessage'
-import { StackParams } from '../navigations/StackNavigator'
 
 const Chat = () => {
   const navigation = useNavigation()
-
-  useFirestoreConnect(() => [{ collection: 'messages' }])
 
   const unreadCount = {
     manager: 0,
@@ -21,7 +17,7 @@ const Chat = () => {
   }
 
   const messages: RawMessage[] = useSelector(state => state.firestore.ordered.messages) || []
-  const user = useSelector(state => state.user)
+  const currentUser = useSelector(state => state.user)
 
   return (
     <Container>
@@ -31,9 +27,9 @@ const Chat = () => {
           <ListItem itemHeader>
             <Text>メッセージのやりとりをする</Text>
           </ListItem>
-          {user.isManager ? (
+          {currentUser.isManager ? (
             _.uniqBy(
-              messages.filter(({ user }) => user._id !== 0),
+              messages.filter(({ user }) => user._id !== currentUser.uid),
               'user._id'
             ).map(({ user }, i) => (
               <ListItem

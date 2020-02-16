@@ -1,29 +1,27 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Body, Button, Container, Content, Left, List, Input, ListItem, Text, Switch, Right } from 'native-base'
+import { Button, Container, Content, Left, List, Input, ListItem, Text, Switch, Right } from 'native-base'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/core'
 
-import { setUser } from '../store/user'
+import { editProfile } from '../store/user'
 import Nav from '../components/Nav'
+import { db } from '../plugins/firebase'
 
 interface IUserInput {
   roomNumber: string
   name: string
-  id: string
-  isManager: boolean
 }
 
 const Setting = () => {
   const navigation = useNavigation()
+  const currentUser = useSelector(state => state.user)
 
-  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
   const [currentInput, setCurrentInput] = React.useState<IUserInput>({
-    ...user,
-    roomNumber: `${user.roomNumber}`,
-    id: `${user.id}`
+    roomNumber: `${currentUser.roomNumber}`,
+    name: currentUser.name
   })
 
   const [isInputValid, setIsInputValid] = React.useState(true)
@@ -68,22 +66,26 @@ const Setting = () => {
   }, [currentInput])
 
   const onPressConfirm = () => {
-    dispatch(
-      setUser({
-        ...currentInput,
-        roomNumber: parseInt(currentInput.roomNumber),
-        id: parseInt(currentInput.id)
+    db.collection('users')
+      .where('uid', '==', currentUser.uid)
+      .get()
+      .then(querySnapshot => {
+        const documentID = querySnapshot.docs[0].id
+        db.collection('users')
+          .doc(documentID)
+          .update({
+            roomNumber: parseInt(currentInput.roomNumber),
+            name: currentInput.name
+          })
+          .then(() => navigation.navigate('Home'))
       })
-    )
-
-    navigation.navigate('Home')
   }
 
   return (
     <Container>
       <Nav title="設定" showBackButton />
       <Content>
-        {user.isSignin ? (
+        {currentUser.isSignin ? (
           <>
             <List>
               <ListItem>
@@ -97,26 +99,6 @@ const Setting = () => {
               <ListItem>
                 <Text style={{ width: 100 }}>名前</Text>
                 <Input value={currentInput.name} onChangeText={val => onChangeInput({ name: val })} />
-              </ListItem>
-              <ListItem>
-                <Text style={{ width: 100 }}>ID</Text>
-                <Input
-                  value={`${currentInput.id}`}
-                  keyboardType="numeric"
-                  onChangeText={val => onChangeInput({ id: val }, true)}
-                />
-              </ListItem>
-              <ListItem>
-                <Left>
-                  <Text style={{ width: 100 }}>管理者</Text>
-                </Left>
-                <Body></Body>
-                <Right>
-                  <Switch
-                    value={currentInput.isManager}
-                    onValueChange={checked => setCurrentInput({ ...currentInput, isManager: checked })}
-                  />
-                </Right>
               </ListItem>
             </List>
             <View
