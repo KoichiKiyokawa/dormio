@@ -1,4 +1,4 @@
-import reducer, { initialState, setUser } from '../user'
+import reducer, { initialState, editProfile } from '../user'
 
 describe('user reducer test', () => {
   test('can set new user', () => {
@@ -11,6 +11,6 @@ describe('user reducer test', () => {
       isSignin: false
     })
 
-    expect(reducer(initialState, setUser(newUser()))).toEqual(newUser())
+    expect(reducer(initialState, editProfile(newUser()))).toEqual(newUser())
   })
 })
