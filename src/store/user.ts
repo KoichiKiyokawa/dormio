@@ -1,15 +1,18 @@
 import { IUser } from '../../types/IUser'
 
 enum ActionTypes {
-  SET_NEW
+  SET_NEW,
+  SIGN_IN
 }
 
-interface Action {
-  type: ActionTypes
-  payload: Omit<IUser, 'isSignin'>
-}
+type Actions = { type: ActionTypes.SET_NEW; payload: Omit<IUser, 'isSignin'> } | { type: ActionTypes.SIGN_IN }
 
-export const setUser = (newState: Omit<IUser, 'isSignin'>): Action => ({ type: ActionTypes.SET_NEW, payload: newState })
+// action creaters
+export const setUser = (newState: Omit<IUser, 'isSignin'>): Actions => ({
+  type: ActionTypes.SET_NEW,
+  payload: newState
+})
+export const signIn = (): Actions => ({ type: ActionTypes.SIGN_IN })
 
 export const initialState: IUser = {
   roomNumber: 0,
@@ -19,10 +22,12 @@ export const initialState: IUser = {
   isSignin: false
 }
 
-export default function reducer(state: IUser = initialState, action: Action): IUser {
+export default function reducer(state: IUser = initialState, action: Actions): IUser {
   switch (action.type) {
     case ActionTypes.SET_NEW:
       return { ...action.payload, isSignin: state.isSignin }
+    case ActionTypes.SIGN_IN:
+      return { ...state, isSignin: true }
     default:
       return state
   }

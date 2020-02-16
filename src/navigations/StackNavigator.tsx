@@ -16,7 +16,7 @@ export type StackParams = {
   PasswordReset: undefined
   Main: undefined
   NoticeDetail: { notice: { title: string; body: string; date: Date } }
-  ManagerChat: undefined
+  ManagerChat: { partnerName: string } // 会話相手
   ResidentsChat: undefined
   Setting: undefined
 }

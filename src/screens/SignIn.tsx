@@ -2,13 +2,16 @@ import React from 'react'
 import { View } from 'react-native'
 import { Button, Container, Content, Header, Input, List, ListItem, Text } from 'native-base'
 import { useNavigation } from '@react-navigation/core'
+import { useDispatch } from 'react-redux'
 
 import { firebase } from '../plugins/firebase'
 import Logo from '../components/Logo'
 import Space from '../components/Space'
+import { signIn } from '../store/user'
 
 const SignIn = () => {
   const navigation = useNavigation()
+  const dispatch = useDispatch()
 
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -20,6 +23,7 @@ const SignIn = () => {
       .signInWithEmailAndPassword(email, password)
       .then(response => {
         console.log(response)
+        dispatch(signIn())
         navigation.navigate('Main')
       })
       .catch(error => {
@@ -63,7 +67,11 @@ const SignIn = () => {
         </List>
         <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>
         <View style={{ marginTop: 12, flexDirection: 'row', justifyContent: 'center' }}>
-          <Button onPress={onPressSignInButton} style={{ width: '66%', justifyContent: 'center' }}>
+          <Button
+            onPress={onPressSignInButton}
+            disabled={email.length + password.length === 0}
+            style={{ width: '66%', justifyContent: 'center' }}
+          >
             <Text>ログイン</Text>
           </Button>
         </View>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { GiftedChat, IMessage } from 'react-native-gifted-chat'
+import Nav from '../../components/Nav'
 
 // TODO: impl later
 export default () => {
@@ -13,5 +14,10 @@ export default () => {
     console.log(messages)
   }
 
-  return <GiftedChat messages={messages} onSend={onSend} user={currentUser} />
+  return (
+    <>
+      <Nav title="住人みんな" showBackButton />
+      <GiftedChat messages={messages} onSend={onSend} user={currentUser} />
+    </>
+  )
 }

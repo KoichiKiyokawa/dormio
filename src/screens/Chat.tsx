@@ -41,7 +41,7 @@ const Chat = () => {
                 button
                 icon
                 onPress={() => {
-                  navigation.navigate('ManagerChat', { userName: user.name })
+                  navigation.navigate('ManagerChat', { partnerName: user.name })
                 }}
               >
                 <Left>
@@ -65,7 +65,7 @@ const Chat = () => {
               button
               icon
               onPress={() => {
-                navigation.navigate('ManagerChat')
+                navigation.navigate('ManagerChat', { partnerName: '管理人' })
               }}
             >
               <Left>
