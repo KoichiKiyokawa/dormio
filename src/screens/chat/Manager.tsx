@@ -1,7 +1,7 @@
 import React from 'react'
 import { GiftedChat, IMessage } from 'react-native-gifted-chat'
 import { useSelector } from 'react-redux'
-import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
+import { useFirestore } from 'react-redux-firebase'
 
 import { RawMessage } from '../../../types/RawMessage'
 import Nav from '../../components/Nav'
@@ -11,12 +11,6 @@ import { StackParams } from '../../navigations/StackNavigator'
 export default () => {
   const route = useRoute<RouteProp<StackParams, 'ManagerChat'>>()
   const firestore = useFirestore()
-  useFirestoreConnect(() => [
-    {
-      collection: 'messages',
-      orderBy: ['createdAt', 'desc']
-    }
-  ])
 
   const rawMessages: RawMessage[] = useSelector(state => state.firestore.ordered.messages)
   // id => _id, timestamps => Dateに変換
@@ -29,7 +23,7 @@ export default () => {
   const user = useSelector(state => state.user)
 
   const currentUser = {
-    _id: user.id,
+    _id: user.uid,
     name: user.name
   }
 

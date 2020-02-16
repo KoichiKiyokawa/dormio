@@ -8,6 +8,8 @@ import { firebase } from '../plugins/firebase'
 import Logo from '../components/Logo'
 import Space from '../components/Space'
 import { signIn } from '../store/user'
+import { db } from '../plugins/firebase'
+import { IUser } from '../../types/IUser'
 
 const SignIn = () => {
   const navigation = useNavigation()
@@ -25,8 +27,16 @@ const SignIn = () => {
       .signInWithEmailAndPassword(email, password)
       .then(response => {
         console.log(response)
-        dispatch(signIn())
-        navigation.navigate('Main')
+        const uid = (response.user || {}).uid || ''
+        // TODO: redux-saga
+        db.collection('users')
+          .where('uid', '==', uid)
+          .get()
+          .then(querySnapshot => {
+            const currentUser = querySnapshot.docs[0].data()
+            dispatch(signIn(currentUser as Omit<IUser, 'isSignin'>))
+            navigation.navigate('Main')
+          })
       })
       .catch(error => {
         switch (error.code) {
@@ -72,7 +82,7 @@ const SignIn = () => {
         <View style={{ marginTop: 12, flexDirection: 'row', justifyContent: 'center' }}>
           <Button
             onPress={onPressSignInButton}
-            disabled={email.length + password.length === 0 || isLoading}
+            disabled={email.length * password.length === 0 || isLoading}
             style={{ width: '66%', justifyContent: 'center' }}
           >
             {isLoading ? <Spinner /> : <Text>ログイン</Text>}

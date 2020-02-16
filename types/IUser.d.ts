@@ -1,7 +1,10 @@
-export interface IUser {
+export interface IUserEditable {
   roomNumber: number
   name: string
-  id: number
+}
+
+export interface IUser extends IUserEditable {
+  uid: string
   isManager: boolean
   isSignin: boolean
 }

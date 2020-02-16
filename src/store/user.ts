@@ -1,33 +1,35 @@
-import { IUser } from '../../types/IUser'
+import { IUser, IUserEditable } from '../../types/IUser'
 
 enum ActionTypes {
-  SET_NEW,
+  EDIT_PROFILE,
   SIGN_IN
 }
 
-type Actions = { type: ActionTypes.SET_NEW; payload: Omit<IUser, 'isSignin'> } | { type: ActionTypes.SIGN_IN }
+type Actions =
+  | { type: ActionTypes.EDIT_PROFILE; payload: IUserEditable }
+  | { type: ActionTypes.SIGN_IN; payload: Omit<IUser, 'isSignin'> }
 
 // action creaters
-export const setUser = (newState: Omit<IUser, 'isSignin'>): Actions => ({
-  type: ActionTypes.SET_NEW,
+export const editProfile = (newState: IUserEditable): Actions => ({
+  type: ActionTypes.EDIT_PROFILE,
   payload: newState
 })
-export const signIn = (): Actions => ({ type: ActionTypes.SIGN_IN })
+export const signIn = (user: Omit<IUser, 'isSignin'>): Actions => ({ type: ActionTypes.SIGN_IN, payload: user })
 
 export const initialState: IUser = {
   roomNumber: 0,
   name: '管理人',
-  id: 0,
+  uid: '',
   isManager: true,
   isSignin: false
 }
 
 export default function reducer(state: IUser = initialState, action: Actions): IUser {
   switch (action.type) {
-    case ActionTypes.SET_NEW:
-      return { ...action.payload, isSignin: state.isSignin }
+    case ActionTypes.EDIT_PROFILE:
+      return { ...state, ...action.payload }
     case ActionTypes.SIGN_IN:
-      return { ...state, isSignin: true }
+      return { ...state, ...action.payload, isSignin: true }
     default:
       return state
   }

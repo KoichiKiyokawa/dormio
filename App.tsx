@@ -5,11 +5,14 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 
 import store from './src/store'
 import { reactReduxFirebaseProps } from './src/store/index'
+import FirestoreProvider from './src/plugins/FirestoreProvider'
 
 export default () => (
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...reactReduxFirebaseProps}>
-      <AppContainer />
+      <FirestoreProvider>
+        <AppContainer />
+      </FirestoreProvider>
     </ReactReduxFirebaseProvider>
   </Provider>
 )

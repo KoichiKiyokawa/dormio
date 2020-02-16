@@ -1,7 +1,7 @@
 import React from 'react'
 import { Badge, Card, CardItem, Text, Icon, Switch } from 'native-base'
 import { Col, Row, Grid } from 'react-native-easy-grid'
-import { useFirestoreConnect, useFirestore } from 'react-redux-firebase'
+import { useFirestore } from 'react-redux-firebase'
 
 import Centerize from '../components/Centerize'
 import { weekEnum } from '../mocks/weeklyMenu'
@@ -12,7 +12,6 @@ import { IMealOrder } from '../../types/IMealOrder'
 
 export default () => {
   const firebase = useFirestore()
-  useFirestoreConnect('mealOrders/trusty')
   const user = useSelector(state => state.user)
   const rawMealOrder = useSelector(state => state.firestore.data.mealOrders.trusty)
   const mealOrders: IMealOrder[] = rawMealOrder ? rawMealOrder.weeklyOrder : []

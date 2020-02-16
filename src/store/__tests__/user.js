@@ -6,7 +6,7 @@ describe('user reducer test', () => {
     const newUser = () => ({
       roomNumber: 101,
       name: 'Taro',
-      id: 101,
+      uid: 'uid_test',
       isManager: false,
       isSignin: false
     })

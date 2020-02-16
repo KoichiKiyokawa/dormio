@@ -2,7 +2,7 @@ import React from 'react'
 import { Body, Button, Card, CardItem, Container, Content, Icon, Left, Text, Right } from 'native-base'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { useSelector } from 'react-redux'
-import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
+import { useFirestore } from 'react-redux-firebase'
 import { useNavigation } from '@react-navigation/native'
 
 import Nav from '../components/Nav'
@@ -13,7 +13,6 @@ const Home = () => {
   const navigation = useNavigation()
 
   const firestore = useFirestore()
-  useFirestoreConnect(['managerLocation/trusty', 'notices'])
 
   const user = useSelector(state => state.user)
   const rawManagerLocation = useSelector(state => state.firestore.data.managerLocation)
