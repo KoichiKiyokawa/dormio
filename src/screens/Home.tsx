@@ -7,7 +7,6 @@ import { useNavigation } from '@react-navigation/native'
 
 import Nav from '../components/Nav'
 import { parseToMonthWithDay } from '../utils/dateUtil'
-import { INotice, IRawNotice } from '../../types/INotice'
 
 const Home = () => {
   const navigation = useNavigation()

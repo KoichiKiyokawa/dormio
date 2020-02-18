@@ -1,6 +1,6 @@
 type EachDayOrder = { breakfast: boolean; dinner: boolean }
 
-export interface IMealOrder {
+interface IMealOrder {
   roomNumber: number
   name: string
   order: {

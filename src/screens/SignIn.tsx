@@ -9,7 +9,6 @@ import Logo from '../components/Logo'
 import Space from '../components/Space'
 import { signIn } from '../store/user'
 import { db } from '../plugins/firebase'
-import { IUser } from '../../types/IUser'
 
 const SignIn = () => {
   const navigation = useNavigation()

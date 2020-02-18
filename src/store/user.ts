@@ -1,5 +1,3 @@
-import { IUser, IUserEditable } from '../../types/IUser'
-
 enum ActionTypes {
   EDIT_PROFILE,
   SIGN_IN

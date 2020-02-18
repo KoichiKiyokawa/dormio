@@ -3,7 +3,6 @@ import { GiftedChat, IMessage } from 'react-native-gifted-chat'
 import { useSelector } from 'react-redux'
 import { useFirestore } from 'react-redux-firebase'
 
-import { RawMessage } from '../../../types/RawMessage'
 import Nav from '../../components/Nav'
 import { useRoute, RouteProp } from '@react-navigation/core'
 import { StackParams } from '../../navigations/StackNavigator'

@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/core'
 
 import Nav from '../components/Nav'
-import { RawMessage } from '../../types/RawMessage'
 
 const Chat = () => {
   const navigation = useNavigation()

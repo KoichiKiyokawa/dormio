@@ -8,7 +8,6 @@ import { weekEnum } from '../mocks/weeklyMenu'
 import { mealWeekNames } from '../utils/dateUtil'
 import { rowStyle, cellStyle } from '../styles'
 import { useSelector } from 'react-redux'
-import { IMealOrder } from '../../types/IMealOrder'
 
 export default () => {
   const firebase = useFirestore()

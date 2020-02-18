@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 import Centerize from '../components/Centerize'
 import CircleOrCross from '../components/CircleOrCross'
 import { getWeekName } from '../utils/dateUtil'
-import { IMealOrder } from '../../types/IMealOrder'
 
 export default () => {
   const _mealOrders = useSelector(state => state.firestore.data.mealOrders)
