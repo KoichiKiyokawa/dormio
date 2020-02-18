@@ -11,6 +11,7 @@ import Space from '../components/Space'
 const SignIn = () => {
   const navigation = useNavigation()
   const [email, setEmail] = React.useState('')
+  const password = 'mock'
 
   const onPressSignInButton = () => {
     firebase
