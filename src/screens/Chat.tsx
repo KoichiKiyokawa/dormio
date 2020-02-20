@@ -15,6 +15,9 @@ const Chat = () => {
     residents: 0
   }
 
+  const users: IUser[] = useSelector(state => state.firestore.ordered.users) || []
+  const manager = users.find(({ isManager }) => isManager)
+
   const messages: RawMessage[] = useSelector(state => state.firestore.ordered.messages) || []
   const currentUser = useSelector(state => state.user)
 
@@ -28,15 +31,15 @@ const Chat = () => {
           </ListItem>
           {currentUser.isManager ? (
             _.uniqBy(
-              messages.filter(({ user }) => user._id !== currentUser.uid),
-              'user._id'
+              messages.filter(({ user }) => user.uid !== currentUser.uid),
+              'user.uid'
             ).map(({ user }, i) => (
               <ListItem
                 key={i}
                 button
                 icon
                 onPress={() => {
-                  navigation.navigate('ManagerChat', { partnerName: user.name })
+                  navigation.navigate('ManagerChat', { partnerUser: user })
                 }}
               >
                 <Left>
@@ -60,7 +63,7 @@ const Chat = () => {
               button
               icon
               onPress={() => {
-                navigation.navigate('ManagerChat', { partnerName: '管理人' })
+                navigation.navigate('ManagerChat', { partnerUser: manager })
               }}
             >
               <Left>
