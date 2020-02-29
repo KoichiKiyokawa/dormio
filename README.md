@@ -1,5 +1,5 @@
 # Dormio
-![](https://github.com/KoichiKiyokawa/dormio/workflows/Test/badge.svg)
+![GitHub Actions](https://github.com/KoichiKiyokawa/dormio/workflows/GitHub%20Actions/badge.svg?branch=master)
 
 ## 概要
 寮で暮らす人々の生活を便利にするツールです。寮の住人と管理人向けです。
