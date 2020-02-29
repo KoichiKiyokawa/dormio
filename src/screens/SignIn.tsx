@@ -21,6 +21,7 @@ const SignIn = () => {
 
   const onPressSignInButton = () => {
     setIsLoading(true)
+    setError('')
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
