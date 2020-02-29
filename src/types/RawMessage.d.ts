@@ -6,9 +6,6 @@ declare global {
     text: string
     createdAt: firebase.firestore.Timestamp
     isSentToGroupChat: boolean
-    user: {
-      uid: string
-      name: string
-    }
+    user: IUser
   }
 }

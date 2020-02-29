@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/core'
 
 import Nav from '../components/Nav'
+import { getNameFromUser } from '../utils/user'
 
 const Chat = () => {
   const navigation = useNavigation()
@@ -46,7 +47,7 @@ const Chat = () => {
                   <FontAwesome5 name="user" size={24} />
                 </Left>
                 <Body>
-                  <Text>{user.name}</Text>
+                  <Text>{getNameFromUser(user)}</Text>
                 </Body>
                 <Right>
                   {unreadCount.manager > 0 && (
