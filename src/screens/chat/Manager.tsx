@@ -17,7 +17,7 @@ export default () => {
   const rawMessages: RawMessage[] = useSelector(state => state.firestore.ordered.messages)
   const filteredMessages = rawMessages.filter(
     ({ isSentToGroupChat, user }) =>
-      (!isSentToGroupChat && user.uid === partnerUser.uid) || user.uid === currentUser.uid
+      !isSentToGroupChat && (user.uid === partnerUser.uid || user.uid === currentUser.uid)
   )
   // id => _id, timestamps => Dateに変換
   const messages = (filteredMessages || []).map(({ id, createdAt, user, ...other }) => ({
