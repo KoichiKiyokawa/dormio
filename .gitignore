@@ -14,7 +14,7 @@ web-report/
 .DS_Store
 
 # env
-env.ts
+.env
 
 # jest
 .jest/
