@@ -1,7 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
 import { Badge, Body, Container, Content, Icon, Left, List, ListItem, Text, Right } from 'native-base'
-import { FontAwesome5 } from '@expo/vector-icons'
 import { useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/core'
 
@@ -44,7 +43,7 @@ const Chat = () => {
                 }}
               >
                 <Left>
-                  <FontAwesome5 name="user" size={24} />
+                  <Icon type="FontAwesome" name="user" size={24} />
                 </Left>
                 <Body>
                   <Text>{getNameFromUser(user)}</Text>

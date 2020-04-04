@@ -2,7 +2,6 @@ import React from 'react'
 import { useFirestoreConnect } from 'react-redux-firebase'
 
 const FirestoreProvider: React.FC = ({ children }) => {
-  console.log('FirestoreProvider')
   useFirestoreConnect([
     { collection: 'managerLocation' },
     { collection: 'notices' },

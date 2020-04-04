@@ -1,5 +1,5 @@
 import React from 'react'
-import { FontAwesome5 } from '@expo/vector-icons'
+import { Icon } from 'native-base'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import Home from '../screens/Home'
@@ -13,17 +13,17 @@ export default () => (
     <Tab.Screen
       name="Home"
       component={Home}
-      options={{ tabBarIcon: ({ color }) => <FontAwesome5 name="home" color={color} size={24} /> }}
+      options={{ tabBarIcon: ({ color }) => <Icon type="FontAwesome" name="home" color={color} size={24} /> }}
     />
     <Tab.Screen
       name="Meal"
       component={Meal}
-      options={{ tabBarIcon: ({ color }) => <FontAwesome5 name="utensils" color={color} size={24} /> }}
+      options={{ tabBarIcon: ({ color }) => <Icon type="FontAwesome" name="utensils" color={color} size={24} /> }}
     />
     <Tab.Screen
       name="Chat"
       component={Chat}
-      options={{ tabBarIcon: ({ color }) => <FontAwesome5 name="comments" color={color} size={24} /> }}
+      options={{ tabBarIcon: ({ color }) => <Icon type="FontAwesome" name="comments" color={color} size={24} /> }}
     />
   </Tab.Navigator>
 )

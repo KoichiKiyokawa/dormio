@@ -1,6 +1,5 @@
 import React from 'react'
 import { Body, Button, Card, CardItem, Container, Content, Icon, Left, Text, Right } from 'native-base'
-import { FontAwesome5 } from '@expo/vector-icons'
 import { useSelector } from 'react-redux'
 import { useFirestore } from 'react-redux-firebase'
 import { useNavigation } from '@react-navigation/native'
@@ -40,7 +39,7 @@ const Home = () => {
         {/* 管理人の情報 */}
         <Card>
           <CardItem header>
-            <FontAwesome5 name="user-shield" size={24} style={{ marginRight: 10 }} />
+            <Icon type="FontAwesome" name="user-shield" size={24} style={{ marginRight: 10 }} />
             <Text>管理人さん情報</Text>
           </CardItem>
           <CardItem>
@@ -72,7 +71,7 @@ const Home = () => {
         {/* お知らせ */}
         <Card>
           <CardItem header>
-            <FontAwesome5 name="bullhorn" color="teal" size={24} style={{ marginRight: 10 }} />
+            <Icon type="FontAwesome" name="bullhorn" color="teal" size={24} style={{ marginRight: 10 }} />
             <Text>お知らせ</Text>
           </CardItem>
           {notices &&
