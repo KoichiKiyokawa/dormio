@@ -13,17 +13,17 @@ export default () => (
     <Tab.Screen
       name="Home"
       component={Home}
-      options={{ tabBarIcon: ({ color }) => <Icon type="FontAwesome" name="home" color={color} size={24} /> }}
+      options={{ tabBarIcon: ({ color }) => <Icon type="FontAwesome5" name="home" color={color} style={{fontSize: 24}} /> }}
     />
     <Tab.Screen
       name="Meal"
       component={Meal}
-      options={{ tabBarIcon: ({ color }) => <Icon type="FontAwesome" name="utensils" color={color} size={24} /> }}
+      options={{ tabBarIcon: ({ color }) => <Icon type="FontAwesome5" name="utensils" color={color} style={{fontSize: 24}} /> }}
     />
     <Tab.Screen
       name="Chat"
       component={Chat}
-      options={{ tabBarIcon: ({ color }) => <Icon type="FontAwesome" name="comments" color={color} size={24} /> }}
+      options={{ tabBarIcon: ({ color }) => <Icon type="FontAwesome5" name="comments" color={color} style={{fontSize: 24}} /> }}
     />
   </Tab.Navigator>
 )

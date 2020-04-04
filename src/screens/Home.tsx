@@ -39,7 +39,7 @@ const Home = () => {
         {/* 管理人の情報 */}
         <Card>
           <CardItem header>
-            <Icon type="FontAwesome" name="user-shield" size={24} style={{ marginRight: 10 }} />
+            <Icon type="FontAwesome5" name="user-shield" style={{ fontSize:24,marginRight: 10 }} />
             <Text>管理人さん情報</Text>
           </CardItem>
           <CardItem>
@@ -71,7 +71,7 @@ const Home = () => {
         {/* お知らせ */}
         <Card>
           <CardItem header>
-            <Icon type="FontAwesome" name="bullhorn" color="teal" size={24} style={{ marginRight: 10 }} />
+            <Icon type="FontAwesome5" name="bullhorn" color="teal" style={{ fontSize:24,marginRight: 10 }} />
             <Text>お知らせ</Text>
           </CardItem>
           {notices &&

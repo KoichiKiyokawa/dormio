@@ -22,8 +22,9 @@ const SignIn = () => {
   const onPressSignInButton = () => {
     setIsLoading(true)
     setError('')
-    firebase
-      .auth()
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => 
+      firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then(response => {
         console.log(response)
@@ -54,6 +55,7 @@ const SignIn = () => {
         console.warn(`error code: ${error.code} message: ${error.message}`)
       })
       .finally(() => setIsLoading(false))
+      )
   }
 
   return (

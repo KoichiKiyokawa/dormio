@@ -43,7 +43,7 @@ const Chat = () => {
                 }}
               >
                 <Left>
-                  <Icon type="FontAwesome" name="user" size={24} />
+                  <Icon type="FontAwesome5" name="user" style={{fontSize:24}} />
                 </Left>
                 <Body>
                   <Text>{getNameFromUser(user)}</Text>
@@ -67,7 +67,7 @@ const Chat = () => {
               }}
             >
               <Left>
-                <FontAwesome5 name="user-shield" size={24} />
+                <Icon type="FontAwesome5" name="user-shield" style={{fontSize:24}} />
               </Left>
               <Body>
                 <Text>管理人</Text>
@@ -90,7 +90,7 @@ const Chat = () => {
             }}
           >
             <Left>
-              <FontAwesome5 name="users" size={24} />
+              <Icon type="FontAwesome5" name="users" style={{fontSize:24}} />
             </Left>
             <Body>
               <Text>住人みんな</Text>
